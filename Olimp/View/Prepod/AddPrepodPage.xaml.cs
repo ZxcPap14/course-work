@@ -72,7 +72,7 @@ namespace Olimp.View.Prepod
                 }
                 else
                 {
-                    testfor.Text = "Логин и почта уже используются";
+                    testfor.Text = "Логин / почта уже используются";
 
                 }
             }
