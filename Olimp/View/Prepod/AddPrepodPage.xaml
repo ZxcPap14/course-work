@@ -1,0 +1,53 @@
+﻿<Page x:Class="Olimp.View.Prepod.AddPrepodPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Olimp.View.Prepod"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddPrepodPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Content="ФИО:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="FullNameTextBox"/>
+
+        <Label Grid.Column="0" Content="Дата рождения:" VerticalAlignment="Center" Margin="0,30,0,0"/>
+        <DatePicker Grid.Column="1" Margin="5,30,5,0" VerticalAlignment="Center" x:Name="BirthDatePicker"/>
+
+        <Label Grid.Column="0" Content="Email:" VerticalAlignment="Center" Margin="0,60,0,0"/>
+        <TextBox Grid.Column="1" Margin="5,60,5,0" VerticalAlignment="Center" x:Name="EmailTextBox"/>
+
+        <Label Grid.Column="0" Content="Логин:" VerticalAlignment="Center" Margin="0,90,0,0"/>
+        <TextBox Grid.Column="1" Margin="5,90,5,0" VerticalAlignment="Center" x:Name="LoginTextBox"/>
+
+        <Label Grid.Column="0" Content="Пароль:" VerticalAlignment="Center" Margin="0,120,0,0"/>
+        <PasswordBox Grid.Column="1" Margin="5,120,5,0" VerticalAlignment="Center" x:Name="PasswordBox"/>
+
+        <Label Grid.Column="0" Content="Учебное заведение:" VerticalAlignment="Center" Margin="0,150,0,0"/>
+        <TextBox Grid.Column="1" Margin="5,150,5,0" VerticalAlignment="Center" x:Name="InstitutionTextBox"/>
+
+        <Label Grid.Column="0" Content="Уровень образования:" VerticalAlignment="Center" Margin="0,180,0,0"/>
+        <ComboBox Grid.Column="1" Margin="5,180,5,0" VerticalAlignment="Center" x:Name="EducationLevelComboBox">
+            <ComboBoxItem Content="Бакалавр"/>
+            <ComboBoxItem Content="Магистр"/>
+            <ComboBoxItem Content="Доктор наук"/>
+        </ComboBox>
+
+        <Label Grid.Column="0" Content="Курс обучения:" VerticalAlignment="Center" Margin="0,210,0,0"/>
+        <TextBox Grid.Column="1" Margin="5,210,5,0" VerticalAlignment="Center" x:Name="CourseTextBox"/>
+
+        <Label Grid.Column="0" Content="Специальность:" VerticalAlignment="Center" Margin="0,240,0,0"/>
+        <TextBox Grid.Column="1" Margin="5,240,5,0" VerticalAlignment="Center" x:Name="SpecialtyTextBox"/>
+
+        <Button Grid.Column="1" Margin="5,270,5,5" VerticalAlignment="Center" Content="Добавить" Click="AddTeacherButton_Click"/>
+        <TextBlock x:Name="testfor" Text="123" Grid.Column="1" Margin="392,90,140,-90"></TextBlock>
+        <Button Background="red" Margin="0,0,67,0" VerticalAlignment="Top" Content="назад" Click="Button_Click_1"/>
+    </Grid>
+</Page>
