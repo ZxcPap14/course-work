@@ -25,7 +25,7 @@ namespace Olimp
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new View.Prepod.AddPrepodPage());
+            MainFrame.Navigate(new AdminPage());
         }
 
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)

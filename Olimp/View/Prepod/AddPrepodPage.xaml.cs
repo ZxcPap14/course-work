@@ -2,8 +2,10 @@
 using Olimp.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Windows.Foundation.Diagnostics;
 
 namespace Olimp.View.Prepod
 {
@@ -23,10 +26,10 @@ namespace Olimp.View.Prepod
     public partial class AddPrepodPage : Page
     {
         Core db = new Core();
-
         public AddPrepodPage()
         {
             InitializeComponent();
+
         }
         public bool check(string test)
         {
@@ -35,6 +38,7 @@ namespace Olimp.View.Prepod
             return !result;
        
         }
+
         private void AddTeacherButton_Click(object sender, RoutedEventArgs e)
         {
             var existingUser = db.context.Users.FirstOrDefault(u => u.Username == LoginTextBox.Text);
@@ -88,6 +92,18 @@ namespace Olimp.View.Prepod
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new AdminPage());
+        }
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1))
+            {
+                e.Handled = true; // Отклоняем ввод, если символ не является цифрой
+            }
+        }
+
+        private void CourseTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

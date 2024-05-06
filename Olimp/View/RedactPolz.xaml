@@ -9,11 +9,12 @@
       Title="RedactPolz">
 
     <Grid>
-        <Button Background="red" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="1" Click="First_Click"></Button>
-        <Button Background="red" Width="30" Height="30" Padding="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="2" Click="Second_Click" Margin="30,0,0,0"></Button>
+        <Button Background="red" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top" Content="назад" Click="Button_Click" Height="30"/>
+
+        <Button Background="Blue" Width="51" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="delete" Click="Delete_Click" Margin="60,0,0,0"></Button>
         <Grid >
 
-            
+
             <ListView x:Name="listviewUsers1" HorizontalAlignment="Stretch"  
                   Margin="10,60,10,10" VerticalAlignment="Stretch" SelectionChanged="listviewUsers1_SelectionChanged">
                 <ListView.View>
@@ -36,14 +37,12 @@
                       Header="Course" Width="80"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Specialty}" 
                       Header="Specialty" Width="80"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Polz}" 
-                      Header="polz" Width="80"/>
 
                     </GridView>
                 </ListView.View>
             </ListView>
 
         </Grid>
-        
+
     </Grid>
 </Page>

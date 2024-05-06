@@ -24,10 +24,10 @@ namespace Olimp.Model
     
         public int OlympiadID { get; set; }
         public string Name { get; set; }
-        public Nullable<int> OrganizerID { get; set; }
+        public int OrganizerID { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
-        public string Status { get; set; }
+        public bool Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Certificates> Certificates { get; set; }

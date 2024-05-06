@@ -13,10 +13,10 @@ namespace Olimp.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OLIMPEntities1 : DbContext
+    public partial class OLIMPEntities4 : DbContext
     {
-        public OLIMPEntities1()
-            : base("name=OLIMPEntities1")
+        public OLIMPEntities4()
+            : base("name=OLIMPEntities4")
         {
         }
     
@@ -30,9 +30,9 @@ namespace Olimp.Model
         public virtual DbSet<Participation> Participation { get; set; }
         public virtual DbSet<Protocol> Protocol { get; set; }
         public virtual DbSet<Reports> Reports { get; set; }
+        public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Teachers> Teachers { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Students> Students { get; set; }
     }
 }

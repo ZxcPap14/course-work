@@ -15,7 +15,7 @@ namespace Olimp.Model
     public partial class Certificates
     {
         public int CertificateID { get; set; }
-        public Nullable<int> OlympiadID { get; set; }
+        public int OlympiadID { get; set; }
         public string Name { get; set; }
     
         public virtual Olympiads Olympiads { get; set; }

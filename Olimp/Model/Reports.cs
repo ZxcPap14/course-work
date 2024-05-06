@@ -15,7 +15,7 @@ namespace Olimp.Model
     public partial class Reports
     {
         public int ReportID { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public int UserID { get; set; }
         public string ReportType { get; set; }
     
         public virtual Users Users { get; set; }

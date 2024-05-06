@@ -11,5 +11,6 @@
     <Grid Background="Red">
         <Button Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Добавить преподователя" Width="200PX" Height="30PX" Click="Button_Click"></Button>
         <Button Background="White" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Редактировать пользователей" Width="200PX" Height="30PX" Click="Button_Click_1" Margin="0,160,0,0"/>
+        <Button Background="White" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Добавить олимпиаду" Width="200PX" Height="30PX" Click="Button_Click_2" Margin="0,260,0,0"/>
     </Grid>
 </Page>
