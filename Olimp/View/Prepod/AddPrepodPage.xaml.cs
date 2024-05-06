@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using Olimp.Model;
+using Olimp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
@@ -48,13 +49,16 @@ namespace Olimp.View.Prepod
 
                 if (existingUser==null && existingTeacher==null)
                 {
+
+
+                    testfor.Text = UserVM.HashPassword(PasswordBox.Password);
                     var newTeacher = new Teachers
                     {
                         FullName = FullNameTextBox.Text,
                         BirthDate = BirthDatePicker.SelectedDate ?? DateTime.MinValue,
                         Email = EmailTextBox.Text,
                         Login = LoginTextBox.Text,
-                        Password = PasswordBox.Password,
+                        Password = UserVM.HashPassword(PasswordBox.Password),
                         Institution = InstitutionTextBox.Text,
                         EducationLevel = (EducationLevelComboBox.SelectedItem as ComboBoxItem)?.Content.ToString(),
                         Course = Convert.ToInt32(CourseTextBox.Text),
@@ -67,7 +71,7 @@ namespace Olimp.View.Prepod
                     var newPolz = new Users
                     {
                         Username = LoginTextBox.Text,
-                        Password = PasswordBox.Password,
+                        Password = UserVM.HashPassword(PasswordBox.Password),
                         UserType = "1"
                     };
                     db.context.Users.Add(newPolz);
@@ -86,19 +90,17 @@ namespace Olimp.View.Prepod
             }
         }
 
-
-
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new AdminPage());
         }
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e) // это чтоб принимал ток цифры . На вставку не рабоатет 
         {
             if (!char.IsDigit(e.Text, e.Text.Length - 1))
             {
-                e.Handled = true; // Отклоняем ввод, если символ не является цифрой
+                e.Handled = true; 
             }
+
         }
 
         private void CourseTextBox_TextChanged(object sender, TextChangedEventArgs e)

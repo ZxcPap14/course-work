@@ -124,6 +124,9 @@
     <Compile Include="View\Prepod\AddPrepodPage.xaml.cs">
       <DependentUpon>AddPrepodPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Protokol.xaml.cs">
+      <DependentUpon>Protokol.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RedactPolz.xaml.cs">
       <DependentUpon>RedactPolz.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Prepod\AddPrepodPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Protokol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -47,7 +47,7 @@ namespace Olimp.View
                 Info.Text = null;
                 if (UserVM.CheckAuth(name, password))
                 {
-                    foreach (var user in db.context.Users.ToList().Where(x => x.Username == name && x.Password == password))
+                    foreach (var user in db.context.Users.ToList().Where(x => x.Username == name && x.Password == UserVM.HashPassword(password)))
                     {
                         if (user.UserType == "0")
                         {

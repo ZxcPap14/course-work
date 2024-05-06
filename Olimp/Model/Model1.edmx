@@ -58,7 +58,7 @@
           <Property Name="BirthDate" Type="date" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Institution" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EducationLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Course" Type="int" Nullable="false" />
@@ -83,7 +83,7 @@
           <Property Name="BirthDate" Type="date" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Institution" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EducationLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Course" Type="int" Nullable="false" />
@@ -95,7 +95,7 @@
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserType" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK__Certifica__Olymp__47DBAE45">
@@ -107,18 +107,6 @@
             </Principal>
             <Dependent Role="Certificates">
               <PropertyRef Name="OlympiadID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Olympiads__Organ__398D8EEE">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Olympiads">
-              <PropertyRef Name="OrganizerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -184,10 +172,6 @@
             <End Role="Olympiads" EntitySet="Olympiads" />
             <End Role="Certificates" EntitySet="Certificates" />
           </AssociationSet>
-          <AssociationSet Name="FK__Olympiads__Organ__398D8EEE" Association="Self.FK__Olympiads__Organ__398D8EEE">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Olympiads" EntitySet="Olympiads" />
-          </AssociationSet>
           <AssociationSet Name="FK__Participa__Olymp__3D5E1FD2" Association="Self.FK__Participa__Olymp__3D5E1FD2">
             <End Role="Olympiads" EntitySet="Olympiads" />
             <End Role="Participation" EntitySet="Participation" />
@@ -230,7 +214,6 @@
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Certificates" Relationship="Self.FK__Certifica__Olymp__47DBAE45" FromRole="Olympiads" ToRole="Certificates" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Olympiads__Organ__398D8EEE" FromRole="Olympiads" ToRole="Users" />
           <NavigationProperty Name="Participation" Relationship="Self.FK__Participa__Olymp__3D5E1FD2" FromRole="Olympiads" ToRole="Participation" />
           <NavigationProperty Name="Protocol" Relationship="Self.FK__Protocol__Olympi__403A8C7D" FromRole="Olympiads" ToRole="Protocol" />
         </EntityType>
@@ -272,7 +255,7 @@
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Institution" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EducationLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Course" Type="Int32" Nullable="false" />
@@ -297,7 +280,7 @@
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Institution" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EducationLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Course" Type="Int32" Nullable="false" />
@@ -309,9 +292,8 @@
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Olympiads" Relationship="Self.FK__Olympiads__Organ__398D8EEE" FromRole="Users" ToRole="Olympiads" />
           <NavigationProperty Name="Participation" Relationship="Self.FK__Participa__UserI__3C69FB99" FromRole="Users" ToRole="Participation" />
           <NavigationProperty Name="Reports" Relationship="Self.FK__Reports__UserID__4316F928" FromRole="Users" ToRole="Reports" />
         </EntityType>
@@ -324,18 +306,6 @@
             </Principal>
             <Dependent Role="Certificates">
               <PropertyRef Name="OlympiadID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Olympiads__Organ__398D8EEE">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Olympiads">
-              <PropertyRef Name="OrganizerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -400,10 +370,6 @@
           <AssociationSet Name="FK__Certifica__Olymp__47DBAE45" Association="Self.FK__Certifica__Olymp__47DBAE45">
             <End Role="Olympiads" EntitySet="Olympiads" />
             <End Role="Certificates" EntitySet="Certificates" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Olympiads__Organ__398D8EEE" Association="Self.FK__Olympiads__Organ__398D8EEE">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Olympiads" EntitySet="Olympiads" />
           </AssociationSet>
           <AssociationSet Name="FK__Participa__Olymp__3D5E1FD2" Association="Self.FK__Participa__Olymp__3D5E1FD2">
             <End Role="Olympiads" EntitySet="Olympiads" />

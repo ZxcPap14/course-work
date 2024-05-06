@@ -25,7 +25,7 @@ namespace Olimp
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new AdminPage());
+            MainFrame.Navigate(new AuthPage());
         }
 
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)

@@ -40,5 +40,10 @@ namespace Olimp.View
         {
             this.NavigationService.Navigate(new AddOlimp());
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Protokol());
+        }
     }
 }
