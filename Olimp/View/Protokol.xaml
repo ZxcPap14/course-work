@@ -9,13 +9,21 @@
       Title="Protokol">
 
     <Grid>
-        <ListView x:Name="ProtocolsListView" ItemsSource="{Binding Protocols}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Название олимпиады" DisplayMemberBinding="{Binding Name}" Width="200"/>
-                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}" Width="150"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid Width="300" Height="400">
+            <ListView x:Name="listviewProtocol"  
+       SelectionChanged="listviewProtocol_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FullName}" 
+          Header="ID" Width="50"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=BirthDate}" 
+          Header="Олимпиада" Width="125"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" 
+          Header="Статус" Width="125"/>
+                       
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
     </Grid>
 </Page>
