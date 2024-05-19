@@ -40,7 +40,7 @@ namespace Olimp.View
 
                 db.context.Users.Remove(existingUser);
 
-                if (existingUser.UserType == "1")
+                if (existingUser.UserType == 1)
                 {
                     var dadada = db.context.Teachers.FirstOrDefault(u => u.Login == login);
                     db.context.Teachers.Remove(dadada);
@@ -66,14 +66,10 @@ namespace Olimp.View
 
         private void listviewUsers1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Проверяем, что есть выбранный элемент
             if (listviewUsers1.SelectedItem != null)
             {
-                // Получаем выбранный ListViewItem
                 ListViewItem selectedItem = (ListViewItem)listviewUsers1.SelectedItem;
 
-                // Получаем данные из свойства Content
-                
                 try
                 {
                     Teachers selected = (Teachers)selectedItem.Content;
@@ -84,18 +80,13 @@ namespace Olimp.View
                     login = selected.Login;
                 }
 
-                // Получаем логин выбранного пользователя
-                //string login = selected.Login;
-
-                // Ваш код обработки логина здесь
-                //MessageBox.Show($"Выбран пользователь с логином: {login}");
             }
         }
 
 
         private void RefreshListView()
         {
-            // Очищаем ListView
+                
             listviewUsers1.Items.Clear();
 
                 var teachers = db.context.Teachers.ToList();
@@ -109,7 +100,8 @@ namespace Olimp.View
                     Institution = t.Institution,
                     EducationLevel = t.EducationLevel,
                     Course = t.Course,
-                    Specialty = t.Specialty
+                    Specialty = t.Specialty,
+                    UserType = t.UserType
                 }).ToList();
                 foreach (var teacherViewModel in teacherViewModels)
                 {
@@ -130,7 +122,8 @@ namespace Olimp.View
                     Institution = s.Institution,
                     EducationLevel = s.EducationLevel,
                     Course = s.Course,
-                    Specialty = s.Specialty
+                    Specialty = s.Specialty,
+                    UserType =s.UserType,
                 }).ToList();
                 foreach (var studentViewModel in studentViewModels)
                 {
@@ -145,6 +138,10 @@ namespace Olimp.View
         {
             this.NavigationService.Navigate(new AdminPage());
 
+        }
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new EditPage());
         }
     }
 }

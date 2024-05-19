@@ -22,12 +22,12 @@ namespace Olimp.View
     public partial class AddOlimp : Page
     {
         Core db = new Core();
-        private readonly OLIMPEntities4 _context; 
+        private readonly OLIMPEntities9 _context; 
 
         public AddOlimp()
         {
             InitializeComponent();
-            _context = new OLIMPEntities4();
+            _context = new OLIMPEntities9();
             LoadTeachers();
         }
         private void LoadTeachers()

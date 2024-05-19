@@ -117,9 +117,17 @@
     <Compile Include="Model\Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="OLIMPDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OLIMPDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\UserVM.cs" />
     <Compile Include="View\AddOlimp.xaml.cs">
       <DependentUpon>AddOlimp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditPage.xaml.cs">
+      <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Prepod\AddPrepodPage.xaml.cs">
       <DependentUpon>AddPrepodPage.xaml</DependentUpon>
@@ -151,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,6 +210,17 @@
     </EntityDeploy>
     <None Include="Model\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="OLIMPDataSet.xsc">
+      <DependentUpon>OLIMPDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OLIMPDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OLIMPDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OLIMPDataSet.xss">
+      <DependentUpon>OLIMPDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

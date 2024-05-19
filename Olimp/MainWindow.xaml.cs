@@ -1,5 +1,6 @@
 ﻿
 using Olimp.View;
+using Olimp.View.Prepod;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Olimp
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new AuthPage());
+            MainFrame.Navigate(new View.Prepod.AddPrepodPage());
         }
 
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)

@@ -1,34 +1,30 @@
 ﻿using Olimp.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Olimp.View
 {
-    /// <summary>
-    /// Логика взаимодействия для Protokol.xaml
-    /// </summary>
     public partial class Protokol : Page
     {
-       
+        public ObservableCollection<ProtocolViewModel> Protocols { get; set; }
 
         public Protokol()
         {
             InitializeComponent();
-           
-        }
+            Protocols = new ObservableCollection<ProtocolViewModel>();
 
-        
+            // Пример заполнения списка протоколов. Замените этот код на ваш запрос к базе данных.
+            Protocols.Add(new ProtocolViewModel { Name = "Олимпиада по математике", Status = "формируется" });
+            Protocols.Add(new ProtocolViewModel { Name = "Олимпиада по физике", Status = "подготовлен" });
+
+            DataContext = this;
+        }
+    }
+
+    public class ProtocolViewModel
+    {
+        public string Name { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -9,12 +9,21 @@
       Title="AddPrepodPage">
 
     <Grid>
+        
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
+        <Grid Width="40" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <UniformGrid Rows="1">
+                <UniformGrid.Resources>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}"/>
+                </UniformGrid.Resources>
+                <RadioButton Content="C" Checked="RadioButton_Checked"/>
+                <RadioButton Content="П" Checked="RadioButton_Checked"/>
+            </UniformGrid>
+        </Grid>
         <Label Grid.Column="0" Content="ФИО:" VerticalAlignment="Center"/>
         <TextBox Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="FullNameTextBox"/>
 

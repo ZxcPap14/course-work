@@ -24,5 +24,6 @@ namespace Olimp.Model
         public string EducationLevel { get; set; }
         public int Course { get; set; }
         public string Specialty { get; set; }
+        public Nullable<int> UserType { get; set; }
     }
 }

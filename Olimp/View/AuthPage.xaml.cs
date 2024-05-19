@@ -49,11 +49,11 @@ namespace Olimp.View
                 {
                     foreach (var user in db.context.Users.ToList().Where(x => x.Username == name && x.Password == UserVM.HashPassword(password)))
                     {
-                        if (user.UserType == "0")
+                        if (user.UserType == 0)
                         {
                             this.NavigationService.Navigate(new AdminPage());
                         }
-                        if (user.UserType == "1")
+                        if (user.UserType == 1)
                         {
                             Info.Text = "1";
                         }

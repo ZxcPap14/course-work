@@ -13,10 +13,10 @@ namespace Olimp.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OLIMPEntities4 : DbContext
+    public partial class OLIMPEntities9 : DbContext
     {
-        public OLIMPEntities4()
-            : base("name=OLIMPEntities4")
+        public OLIMPEntities9()
+            : base("name=OLIMPEntities9")
         {
         }
     

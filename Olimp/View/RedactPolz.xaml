@@ -10,13 +10,16 @@
 
     <Grid>
         <Button Background="red" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top" Content="назад" Click="Button_Click" Height="30"/>
-
+   
         <Button Background="Blue" Width="51" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="delete" Click="Delete_Click" Margin="60,0,0,0"></Button>
-        <Grid >
+        
+        <Button Background="Green" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Edit" Click="Edit_Click" Height="30" Margin="120,0,0,0"/>
+        
+        <Grid Margin="0,35,0,0" >
 
 
-            <ListView x:Name="listviewUsers1" HorizontalAlignment="Stretch"  
-                  Margin="10,60,10,10" VerticalAlignment="Stretch" SelectionChanged="listviewUsers1_SelectionChanged">
+            <ListView x:Name="listviewUsers1"  
+                  Margin="10,25,10,10" SelectionChanged="listviewUsers1_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FullName}" 
@@ -28,7 +31,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Login}" 
                       Header="Login" Width="80"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Password}" 
-                      Header="BirthDate" Width="80"/>
+                      Header="Password" Width="80"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Institution}" 
                       Header="Institution" Width="80"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=EducationLevel}" 
@@ -37,6 +40,8 @@
                       Header="Course" Width="80"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Specialty}" 
                       Header="Specialty" Width="80"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=UserType}" 
+                     Header="UserType" Width="80"/>
 
                     </GridView>
                 </ListView.View>

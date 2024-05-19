@@ -3,6 +3,7 @@ using Olimp.Model;
 using Olimp.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -27,6 +29,7 @@ namespace Olimp.View.Prepod
     public partial class AddPrepodPage : Page
     {
         Core db = new Core();
+        public string checkbox2;
         public AddPrepodPage()
         {
             InitializeComponent();
@@ -35,59 +38,129 @@ namespace Olimp.View.Prepod
         public bool check(string test)
         {
             bool result = String.IsNullOrEmpty(test);
-            //testfor.Text = result.ToString();
             return !result;
-       
         }
-
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            var radioButton = sender as RadioButton;
+            if (radioButton != null)
+            {
+                // Дальнейшая логика обработки выбранной опции
+                checkbox2 = radioButton.Content.ToString();
+                MessageBox.Show($"Вы выбрали: {checkbox2}");
+            }
+        }
         private void AddTeacherButton_Click(object sender, RoutedEventArgs e)
         {
+            
+            var dbContext = new OLIMPEntities9();
             var existingUser = db.context.Users.FirstOrDefault(u => u.Username == LoginTextBox.Text);
             var existingTeacher = db.context.Teachers.FirstOrDefault(t => t.Email == EmailTextBox.Text);
-            if (check(FullNameTextBox.Text) !=false&& check(BirthDatePicker.Text)!=false&&check(EmailTextBox.Text) !=false && check(LoginTextBox.Text)!=false&& check(PasswordBox.Password)!=false&& check(InstitutionTextBox.Text)!=false &&check(EducationLevelComboBox.Text)!=false&& check(CourseTextBox.Text) !=false&&check(SpecialtyTextBox.Text)!=false )
+            if (checkbox2 == "п")
             {
-
-                if (existingUser==null && existingTeacher==null)
+                if (check(FullNameTextBox.Text) != false && check(BirthDatePicker.Text) != false && check(EmailTextBox.Text) != false && check(LoginTextBox.Text) != false && check(PasswordBox.Password) != false && check(InstitutionTextBox.Text) != false && check(EducationLevelComboBox.Text) != false && check(CourseTextBox.Text) != false && check(SpecialtyTextBox.Text) != false)
                 {
 
-
-                    testfor.Text = UserVM.HashPassword(PasswordBox.Password);
-                    var newTeacher = new Teachers
+                    if (existingUser == null && existingTeacher == null)
                     {
-                        FullName = FullNameTextBox.Text,
-                        BirthDate = BirthDatePicker.SelectedDate ?? DateTime.MinValue,
-                        Email = EmailTextBox.Text,
-                        Login = LoginTextBox.Text,
-                        Password = UserVM.HashPassword(PasswordBox.Password),
-                        Institution = InstitutionTextBox.Text,
-                        EducationLevel = (EducationLevelComboBox.SelectedItem as ComboBoxItem)?.Content.ToString(),
-                        Course = Convert.ToInt32(CourseTextBox.Text),
-                        Specialty = SpecialtyTextBox.Text
-                    };
+                        testfor.Text = UserVM.HashPassword(PasswordBox.Password);
+                        var newPolz = new Users
+                        {
+                            Username = LoginTextBox.Text,
+                            Password = UserVM.HashPassword(PasswordBox.Password),
+                            UserType = 1
+                        };
+                        db.context.Users.Add(newPolz);
+                        db.context.SaveChanges();
+                        int userRole = dbContext.Users
+                        .Where(u => u.Username == LoginTextBox.Text)
+                        .Select(u => u.UserType)
+                        .FirstOrDefault();
+
+                        var newTeacher = new Teachers
+                        {
+                            FullName = FullNameTextBox.Text,
+                            BirthDate = BirthDatePicker.SelectedDate ?? DateTime.MinValue,
+                            Email = EmailTextBox.Text,
+                            Login = LoginTextBox.Text,
+                            Password = UserVM.HashPassword(PasswordBox.Password),
+                            Institution = InstitutionTextBox.Text,
+                            EducationLevel = (EducationLevelComboBox.SelectedItem as ComboBoxItem)?.Content.ToString(),
+                            Course = Convert.ToInt32(CourseTextBox.Text),
+                            Specialty = SpecialtyTextBox.Text,
+                            UserType = userRole,
+                        };
 
 
-                    db.context.Teachers.Add(newTeacher);
-                    db.context.SaveChanges();
-                    var newPolz = new Users
+                        db.context.Teachers.Add(newTeacher);
+                        db.context.SaveChanges();
+
+                        testfor.Text = "Успешно";
+                    }
+                    else
                     {
-                        Username = LoginTextBox.Text,
-                        Password = UserVM.HashPassword(PasswordBox.Password),
-                        UserType = "1"
-                    };
-                    db.context.Users.Add(newPolz);
-                    db.context.SaveChanges();
-                    testfor.Text = "Успешно";
+                        testfor.Text = "Логин и почта уже используются";
+
+                    }
                 }
                 else
                 {
-                    testfor.Text = "Логин и почта уже используются";
-
+                    testfor.Text = "Не все поля заполнены";
                 }
             }
             else
             {
-                testfor.Text = "Не все поля заполнены";
+                if (check(FullNameTextBox.Text) != false && check(BirthDatePicker.Text) != false && check(EmailTextBox.Text) != false && check(LoginTextBox.Text) != false && check(PasswordBox.Password) != false && check(InstitutionTextBox.Text) != false && check(EducationLevelComboBox.Text) != false && check(CourseTextBox.Text) != false && check(SpecialtyTextBox.Text) != false)
+                {
+
+                    if (existingUser == null && existingTeacher == null)
+                    {
+                        testfor.Text = UserVM.HashPassword(PasswordBox.Password);
+                        var newPolz = new Users
+                        {
+                            Username = LoginTextBox.Text,
+                            Password = UserVM.HashPassword(PasswordBox.Password),
+                            UserType = 2
+                        };
+                        db.context.Users.Add(newPolz);
+                        db.context.SaveChanges();
+                        int userRole = dbContext.Users
+                        .Where(u => u.Username == LoginTextBox.Text)
+                        .Select(u => u.UserType)
+                        .FirstOrDefault();
+
+                        var newsStudent = new Students
+                        {
+                            FullName = FullNameTextBox.Text,
+                            BirthDate = BirthDatePicker.SelectedDate ?? DateTime.MinValue,
+                            Email = EmailTextBox.Text,
+                            Login = LoginTextBox.Text,
+                            Password = UserVM.HashPassword(PasswordBox.Password),
+                            Institution = InstitutionTextBox.Text,
+                            EducationLevel = (EducationLevelComboBox.SelectedItem as ComboBoxItem)?.Content.ToString(),
+                            Course = Convert.ToInt32(CourseTextBox.Text),
+                            Specialty = SpecialtyTextBox.Text,
+                            UserType = 2,
+                        };
+
+
+                        db.context.Students.Add(newsStudent);
+                        db.context.SaveChanges();
+
+                        testfor.Text = "Успешно";
+                    }
+                    else
+                    {
+                        testfor.Text = "Логин и почта уже используются";
+
+                    }
+                }
+                else
+                {
+                    testfor.Text = "Не все поля заполнены";
+                }
             }
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
