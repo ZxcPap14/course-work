@@ -78,6 +78,9 @@
     <Compile Include="Model\Certificates.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Documents.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,7 +105,16 @@
     <Compile Include="Model\Protocol.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Protocolss.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Registrations_on_olimpiad.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Reports.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Results.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Students.cs">
@@ -129,11 +141,20 @@
     <Compile Include="View\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Prepodovatiel\AddNewStudent.xaml.cs">
+      <DependentUpon>AddNewStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Prepodovatiel\PrepodMainPage.xaml.cs">
+      <DependentUpon>PrepodMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Prepodovatiel\ResultOlimpPage.xaml.cs">
+      <DependentUpon>ResultOlimpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Prepod\AddPrepodPage.xaml.cs">
       <DependentUpon>AddPrepodPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Protokol.xaml.cs">
-      <DependentUpon>Protokol.xaml</DependentUpon>
+    <Compile Include="View\Protocol.xaml.cs">
+      <DependentUpon>Protocol.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RedactPolz.xaml.cs">
       <DependentUpon>RedactPolz.xaml</DependentUpon>
@@ -166,11 +187,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Prepodovatiel\AddNewStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Prepodovatiel\PrepodMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Prepodovatiel\ResultOlimpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Prepod\AddPrepodPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Protokol.xaml">
+    <Page Include="View\Protocol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,6 +310,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\NonRegUsers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Model1.Context.tt">

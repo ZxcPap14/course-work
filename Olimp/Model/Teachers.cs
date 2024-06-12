@@ -14,6 +14,12 @@ namespace Olimp.Model
     
     public partial class Teachers
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Teachers()
+        {
+            this.Protocolss = new HashSet<Protocolss>();
+        }
+    
         public int TeacherID { get; set; }
         public string FullName { get; set; }
         public System.DateTime BirthDate { get; set; }
@@ -25,5 +31,8 @@ namespace Olimp.Model
         public int Course { get; set; }
         public string Specialty { get; set; }
         public Nullable<int> UserType { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Protocolss> Protocolss { get; set; }
     }
 }

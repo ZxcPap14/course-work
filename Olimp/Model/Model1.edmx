@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище OLIMPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище OLIMPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Certificates">
           <Key>
             <PropertyRef Name="CertificateID" />
@@ -12,6 +12,18 @@
           <Property Name="CertificateID" Type="int" Nullable="false" />
           <Property Name="OlympiadID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "OLIMP.dbo.Documents" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="olympiad_id" Type="int" />
+          <Property Name="document_type" Type="varchar" MaxLength="50" />
+          <Property Name="file_path" Type="varchar" MaxLength="255" />
+          <Property Name="uploaded_at" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Olympiads">
           <Key>
@@ -22,7 +34,6 @@
           <Property Name="OrganizerID" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
-          <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Participation">
           <Key>
@@ -37,9 +48,30 @@
           <Key>
             <PropertyRef Name="ProtocolID" />
           </Key>
-          <Property Name="ProtocolID" Type="int" Nullable="false" />
+          <Property Name="ProtocolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OlympiadID" Type="int" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="create_data" Type="date" />
+          <Property Name="last_upload" Type="date" />
+        </EntityType>
+        <EntityType Name="Protocolss">
+          <Key>
+            <PropertyRef Name="ProtocolID" />
+          </Key>
+          <Property Name="ProtocolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OlympiadID" Type="int" Nullable="false" />
+          <Property Name="TeacherID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "OLIMP.dbo.Registrations_on_olimpiad" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Registrations_on_olimpiad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="olympiad_id" Type="int" />
+          <Property Name="student_id" Type="int" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
@@ -48,6 +80,18 @@
           <Property Name="ReportID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="ReportType" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "OLIMP.dbo.Results" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="protocol_id" Type="int" />
+          <Property Name="student_id" Type="int" />
+          <Property Name="score" Type="int" />
+          <Property Name="result" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6013: Первичный ключ в таблице или представлении "OLIMP.dbo.RoleTyper" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
@@ -166,16 +210,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Protocols_Olympiads">
+          <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="1" />
+          <End Role="Protocolss" Type="Self.Protocolss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Olympiads">
+              <PropertyRef Name="OlympiadID" />
+            </Principal>
+            <Dependent Role="Protocolss">
+              <PropertyRef Name="OlympiadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Protocols_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Protocolss" Type="Self.Protocolss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="TeacherID" />
+            </Principal>
+            <Dependent Role="Protocolss">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище OLIMPModelContainer">
           <EntitySet Name="Certificates" EntityType="Self.Certificates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Olympiads" EntityType="Self.Olympiads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Participation" EntityType="Self.Participation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Protocol" EntityType="Self.Protocol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Protocolss" EntityType="Self.Protocolss" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documents" EntityType="Self.Documents" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Documents].[id] AS [id], 
+    [Documents].[olympiad_id] AS [olympiad_id], 
+    [Documents].[document_type] AS [document_type], 
+    [Documents].[file_path] AS [file_path], 
+    [Documents].[uploaded_at] AS [uploaded_at]
+    FROM [dbo].[Documents] AS [Documents]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Registrations_on_olimpiad" EntityType="Self.Registrations_on_olimpiad" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Registrations_on_olimpiad].[id] AS [id], 
+    [Registrations_on_olimpiad].[olympiad_id] AS [olympiad_id], 
+    [Registrations_on_olimpiad].[student_id] AS [student_id]
+    FROM [dbo].[Registrations_on_olimpiad] AS [Registrations_on_olimpiad]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Results" EntityType="Self.Results" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Results].[id] AS [id], 
+    [Results].[protocol_id] AS [protocol_id], 
+    [Results].[student_id] AS [student_id], 
+    [Results].[score] AS [score], 
+    [Results].[result] AS [result]
+    FROM [dbo].[Results] AS [Results]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Certifica__Olymp__47DBAE45" Association="Self.FK__Certifica__Olymp__47DBAE45">
             <End Role="Olympiads" EntitySet="Olympiads" />
             <End Role="Certificates" EntitySet="Certificates" />
@@ -196,64 +290,42 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
+          <AssociationSet Name="FK_Protocols_Olympiads" Association="Self.FK_Protocols_Olympiads">
+            <End Role="Olympiads" EntitySet="Olympiads" />
+            <End Role="Protocolss" EntitySet="Protocolss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Protocols_Teachers" Association="Self.FK_Protocols_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Protocolss" EntitySet="Protocolss" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OLIMPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="OLIMPEntities9" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Certificates" EntityType="OLIMPModel.Certificates" />
-          <EntitySet Name="Olympiads" EntityType="OLIMPModel.Olympiads" />
-          <EntitySet Name="Participation" EntityType="OLIMPModel.Participation" />
-          <EntitySet Name="Protocol" EntityType="OLIMPModel.Protocol" />
-          <EntitySet Name="Reports" EntityType="OLIMPModel.Reports" />
-          <EntitySet Name="Students" EntityType="OLIMPModel.Students" />
-          <EntitySet Name="sysdiagrams" EntityType="OLIMPModel.sysdiagrams" />
-          <EntitySet Name="Teachers" EntityType="OLIMPModel.Teachers" />
-          <EntitySet Name="Users" EntityType="OLIMPModel.Users" />
-          <AssociationSet Name="FK__Certifica__Olymp__47DBAE45" Association="OLIMPModel.FK__Certifica__Olymp__47DBAE45">
-            <End Role="Olympiads" EntitySet="Olympiads" />
-            <End Role="Certificates" EntitySet="Certificates" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Participa__Olymp__3D5E1FD2" Association="OLIMPModel.FK__Participa__Olymp__3D5E1FD2">
-            <End Role="Olympiads" EntitySet="Olympiads" />
-            <End Role="Participation" EntitySet="Participation" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Protocol__Olympi__403A8C7D" Association="OLIMPModel.FK__Protocol__Olympi__403A8C7D">
-            <End Role="Olympiads" EntitySet="Olympiads" />
-            <End Role="Protocol" EntitySet="Protocol" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Participa__UserI__3C69FB99" Association="OLIMPModel.FK__Participa__UserI__3C69FB99">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Participation" EntitySet="Participation" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reports__UserID__4316F928" Association="OLIMPModel.FK__Reports__UserID__4316F928">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Certificates">
           <Key>
             <PropertyRef Name="CertificateID" />
           </Key>
           <Property Name="CertificateID" Type="Int32" Nullable="false" />
           <Property Name="OlympiadID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Olympiads" Relationship="OLIMPModel.FK__Certifica__Olymp__47DBAE45" FromRole="Certificates" ToRole="Olympiads" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Olympiads" Relationship="Self.FK__Certifica__Olymp__47DBAE45" FromRole="Certificates" ToRole="Olympiads" />
         </EntityType>
         <EntityType Name="Olympiads">
           <Key>
             <PropertyRef Name="OlympiadID" />
           </Key>
           <Property Name="OlympiadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OrganizerID" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Certificates" Relationship="OLIMPModel.FK__Certifica__Olymp__47DBAE45" FromRole="Olympiads" ToRole="Certificates" />
-          <NavigationProperty Name="Participation" Relationship="OLIMPModel.FK__Participa__Olymp__3D5E1FD2" FromRole="Olympiads" ToRole="Participation" />
-          <NavigationProperty Name="Protocol" Relationship="OLIMPModel.FK__Protocol__Olympi__403A8C7D" FromRole="Olympiads" ToRole="Protocol" />
+          <NavigationProperty Name="Certificates" Relationship="Self.FK__Certifica__Olymp__47DBAE45" FromRole="Olympiads" ToRole="Certificates" />
+          <NavigationProperty Name="Participation" Relationship="Self.FK__Participa__Olymp__3D5E1FD2" FromRole="Olympiads" ToRole="Participation" />
+          <NavigationProperty Name="Protocol" Relationship="Self.FK__Protocol__Olympi__403A8C7D" FromRole="Olympiads" ToRole="Protocol" />
+          <NavigationProperty Name="Protocolss" Relationship="Self.FK_Protocols_Olympiads" FromRole="Olympiads" ToRole="Protocolss" />
         </EntityType>
         <EntityType Name="Participation">
           <Key>
@@ -263,17 +335,30 @@
           <Property Name="UserID" Type="Int32" />
           <Property Name="OlympiadID" Type="Int32" />
           <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Olympiads" Relationship="OLIMPModel.FK__Participa__Olymp__3D5E1FD2" FromRole="Participation" ToRole="Olympiads" />
-          <NavigationProperty Name="Users" Relationship="OLIMPModel.FK__Participa__UserI__3C69FB99" FromRole="Participation" ToRole="Users" />
+          <NavigationProperty Name="Olympiads" Relationship="Self.FK__Participa__Olymp__3D5E1FD2" FromRole="Participation" ToRole="Olympiads" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Participa__UserI__3C69FB99" FromRole="Participation" ToRole="Users" />
         </EntityType>
         <EntityType Name="Protocol">
           <Key>
             <PropertyRef Name="ProtocolID" />
           </Key>
-          <Property Name="ProtocolID" Type="Int32" Nullable="false" />
+          <Property Name="ProtocolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OlympiadID" Type="Int32" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Olympiads" Relationship="OLIMPModel.FK__Protocol__Olympi__403A8C7D" FromRole="Protocol" ToRole="Olympiads" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_data" Type="DateTime" Precision="0" />
+          <Property Name="last_upload" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Olympiads" Relationship="Self.FK__Protocol__Olympi__403A8C7D" FromRole="Protocol" ToRole="Olympiads" />
+        </EntityType>
+        <EntityType Name="Protocolss">
+          <Key>
+            <PropertyRef Name="ProtocolID" />
+          </Key>
+          <Property Name="ProtocolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OlympiadID" Type="Int32" Nullable="false" />
+          <Property Name="TeacherID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Olympiads" Relationship="Self.FK_Protocols_Olympiads" FromRole="Protocolss" ToRole="Olympiads" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Protocols_Teachers" FromRole="Protocolss" ToRole="Teachers" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
@@ -281,30 +366,30 @@
           </Key>
           <Property Name="ReportID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="ReportType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="OLIMPModel.FK__Reports__UserID__4316F928" FromRole="Reports" ToRole="Users" />
+          <Property Name="ReportType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Reports__UserID__4316F928" FromRole="Reports" ToRole="Users" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
             <PropertyRef Name="StudentID" />
           </Key>
           <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Institution" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EducationLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Institution" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EducationLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Course" Type="Int32" Nullable="false" />
-          <Property Name="Specialty" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Specialty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserType" Type="Int32" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -315,31 +400,60 @@
             <PropertyRef Name="TeacherID" />
           </Key>
           <Property Name="TeacherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Institution" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EducationLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Institution" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EducationLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Course" Type="Int32" Nullable="false" />
-          <Property Name="Specialty" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Specialty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserType" Type="Int32" />
+          <NavigationProperty Name="Protocolss" Relationship="Self.FK_Protocols_Teachers" FromRole="Teachers" ToRole="Protocolss" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserType" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Participation" Relationship="OLIMPModel.FK__Participa__UserI__3C69FB99" FromRole="Users" ToRole="Participation" />
-          <NavigationProperty Name="Reports" Relationship="OLIMPModel.FK__Reports__UserID__4316F928" FromRole="Users" ToRole="Reports" />
+          <NavigationProperty Name="Participation" Relationship="Self.FK__Participa__UserI__3C69FB99" FromRole="Users" ToRole="Participation" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK__Reports__UserID__4316F928" FromRole="Users" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="olympiad_id" Type="Int32" />
+          <Property Name="document_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="file_path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="uploaded_at" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Registrations_on_olimpiad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="olympiad_id" Type="Int32" />
+          <Property Name="student_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="protocol_id" Type="Int32" />
+          <Property Name="student_id" Type="Int32" />
+          <Property Name="score" Type="Int32" />
+          <Property Name="result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Certifica__Olymp__47DBAE45">
-          <End Type="OLIMPModel.Olympiads" Role="Olympiads" Multiplicity="1" />
-          <End Type="OLIMPModel.Certificates" Role="Certificates" Multiplicity="*" />
+          <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="1" />
+          <End Role="Certificates" Type="Self.Certificates" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Olympiads">
               <PropertyRef Name="OlympiadID" />
@@ -350,8 +464,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Participa__Olymp__3D5E1FD2">
-          <End Type="OLIMPModel.Olympiads" Role="Olympiads" Multiplicity="0..1" />
-          <End Type="OLIMPModel.Participation" Role="Participation" Multiplicity="*" />
+          <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="0..1" />
+          <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Olympiads">
               <PropertyRef Name="OlympiadID" />
@@ -362,8 +476,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Protocol__Olympi__403A8C7D">
-          <End Type="OLIMPModel.Olympiads" Role="Olympiads" Multiplicity="0..1" />
-          <End Type="OLIMPModel.Protocol" Role="Protocol" Multiplicity="*" />
+          <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="0..1" />
+          <End Role="Protocol" Type="Self.Protocol" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Olympiads">
               <PropertyRef Name="OlympiadID" />
@@ -373,9 +487,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Protocols_Olympiads">
+          <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="1" />
+          <End Role="Protocolss" Type="Self.Protocolss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Olympiads">
+              <PropertyRef Name="OlympiadID" />
+            </Principal>
+            <Dependent Role="Protocolss">
+              <PropertyRef Name="OlympiadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Participa__UserI__3C69FB99">
-          <End Type="OLIMPModel.Users" Role="Users" Multiplicity="0..1" />
-          <End Type="OLIMPModel.Participation" Role="Participation" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
@@ -385,9 +511,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Protocols_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Protocolss" Type="Self.Protocolss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="TeacherID" />
+            </Principal>
+            <Dependent Role="Protocolss">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Reports__UserID__4316F928">
-          <End Type="OLIMPModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="OLIMPModel.Reports" Role="Reports" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
@@ -397,113 +535,198 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="OLIMPEntities10" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Certificates" EntityType="Self.Certificates" />
+          <EntitySet Name="Olympiads" EntityType="Self.Olympiads" />
+          <EntitySet Name="Participation" EntityType="Self.Participation" />
+          <EntitySet Name="Protocol" EntityType="Self.Protocol" />
+          <EntitySet Name="Protocolss" EntityType="Self.Protocolss" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" />
+          <EntitySet Name="Students" EntityType="Self.Students" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Documents" EntityType="Self.Documents" />
+          <EntitySet Name="Registrations_on_olimpiad" EntityType="Self.Registrations_on_olimpiad" />
+          <EntitySet Name="Results" EntityType="Self.Results" />
+          <AssociationSet Name="FK__Certifica__Olymp__47DBAE45" Association="Self.FK__Certifica__Olymp__47DBAE45">
+            <End Role="Olympiads" EntitySet="Olympiads" />
+            <End Role="Certificates" EntitySet="Certificates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Participa__Olymp__3D5E1FD2" Association="Self.FK__Participa__Olymp__3D5E1FD2">
+            <End Role="Olympiads" EntitySet="Olympiads" />
+            <End Role="Participation" EntitySet="Participation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Protocol__Olympi__403A8C7D" Association="Self.FK__Protocol__Olympi__403A8C7D">
+            <End Role="Olympiads" EntitySet="Olympiads" />
+            <End Role="Protocol" EntitySet="Protocol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Protocols_Olympiads" Association="Self.FK_Protocols_Olympiads">
+            <End Role="Olympiads" EntitySet="Olympiads" />
+            <End Role="Protocolss" EntitySet="Protocolss" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Participa__UserI__3C69FB99" Association="Self.FK__Participa__UserI__3C69FB99">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Participation" EntitySet="Participation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Protocols_Teachers" Association="Self.FK_Protocols_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Protocolss" EntitySet="Protocolss" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reports__UserID__4316F928" Association="Self.FK__Reports__UserID__4316F928">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище OLIMPModelContainer" CdmEntityContainer="OLIMPEntities9">
+        <EntityContainerMapping StorageEntityContainer="Хранилище OLIMPModelContainer" CdmEntityContainer="OLIMPEntities10">
           <EntitySetMapping Name="Certificates">
             <EntityTypeMapping TypeName="OLIMPModel.Certificates">
               <MappingFragment StoreEntitySet="Certificates">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
                 <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+                <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Olympiads">
             <EntityTypeMapping TypeName="OLIMPModel.Olympiads">
               <MappingFragment StoreEntitySet="Olympiads">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="OrganizerID" ColumnName="OrganizerID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizerID" ColumnName="OrganizerID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Participation">
             <EntityTypeMapping TypeName="OLIMPModel.Participation">
               <MappingFragment StoreEntitySet="Participation">
-                <ScalarProperty Name="Result" ColumnName="Result" />
-                <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ParticipationID" ColumnName="ParticipationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Protocol">
             <EntityTypeMapping TypeName="OLIMPModel.Protocol">
               <MappingFragment StoreEntitySet="Protocol">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
                 <ScalarProperty Name="ProtocolID" ColumnName="ProtocolID" />
+                <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="create_data" ColumnName="create_data" />
+                <ScalarProperty Name="last_upload" ColumnName="last_upload" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Protocolss">
+            <EntityTypeMapping TypeName="OLIMPModel.Protocolss">
+              <MappingFragment StoreEntitySet="Protocolss">
+                <ScalarProperty Name="ProtocolID" ColumnName="ProtocolID" />
+                <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reports">
             <EntityTypeMapping TypeName="OLIMPModel.Reports">
               <MappingFragment StoreEntitySet="Reports">
-                <ScalarProperty Name="ReportType" ColumnName="ReportType" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ReportType" ColumnName="ReportType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="OLIMPModel.Students">
               <MappingFragment StoreEntitySet="Students">
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-                <ScalarProperty Name="Specialty" ColumnName="Specialty" />
-                <ScalarProperty Name="Course" ColumnName="Course" />
-                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
-                <ScalarProperty Name="Institution" ColumnName="Institution" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Institution" ColumnName="Institution" />
+                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Specialty" ColumnName="Specialty" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="OLIMPModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="OLIMPModel.Teachers">
               <MappingFragment StoreEntitySet="Teachers">
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-                <ScalarProperty Name="Specialty" ColumnName="Specialty" />
-                <ScalarProperty Name="Course" ColumnName="Course" />
-                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
-                <ScalarProperty Name="Institution" ColumnName="Institution" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Institution" ColumnName="Institution" />
+                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Specialty" ColumnName="Specialty" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="OLIMPModel.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="OLIMPModel.Documents">
+              <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="olympiad_id" ColumnName="olympiad_id" />
+                <ScalarProperty Name="document_type" ColumnName="document_type" />
+                <ScalarProperty Name="file_path" ColumnName="file_path" />
+                <ScalarProperty Name="uploaded_at" ColumnName="uploaded_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations_on_olimpiad">
+            <EntityTypeMapping TypeName="OLIMPModel.Registrations_on_olimpiad">
+              <MappingFragment StoreEntitySet="Registrations_on_olimpiad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="olympiad_id" ColumnName="olympiad_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="OLIMPModel.Results">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="protocol_id" ColumnName="protocol_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="result" ColumnName="result" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

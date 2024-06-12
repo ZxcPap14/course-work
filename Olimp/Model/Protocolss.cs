@@ -12,14 +12,14 @@ namespace Olimp.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Protocol
+    public partial class Protocolss
     {
         public int ProtocolID { get; set; }
-        public Nullable<int> OlympiadID { get; set; }
-        public string Status { get; set; }
-        public Nullable<System.DateTime> create_data { get; set; }
-        public Nullable<System.DateTime> last_upload { get; set; }
+        public int OlympiadID { get; set; }
+        public int TeacherID { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     
         public virtual Olympiads Olympiads { get; set; }
+        public virtual Teachers Teachers { get; set; }
     }
 }

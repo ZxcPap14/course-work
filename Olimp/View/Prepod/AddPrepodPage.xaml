@@ -50,8 +50,15 @@
         </ComboBox>
 
         <Label Grid.Column="0" Content="Курс обучения:" VerticalAlignment="Center" Margin="0,210,0,0"/>
-        <TextBox Grid.Column="1" Margin="5,210,5,0" VerticalAlignment="Center" x:Name="CourseTextBox"  PreviewTextInput="TextBox_PreviewTextInput"/>
-
+       
+        <ComboBox Grid.Column="1" Margin="5,210,5,0" VerticalAlignment="Center" x:Name="CourseTextBox">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+            <ComboBoxItem Content="5"/>
+            <ComboBoxItem Content="6"/>
+        </ComboBox>
         <Label Grid.Column="0" Content="Специальность:" VerticalAlignment="Center" Margin="0,240,0,0"/>
         <TextBox Grid.Column="1" Margin="5,240,5,0" VerticalAlignment="Center" x:Name="SpecialtyTextBox"/>
 

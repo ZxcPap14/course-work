@@ -17,5 +17,6 @@
             <Button Content="Login" Click="Login_Click" HorizontalAlignment="Center"/>
             <TextBlock x:Name="Info" Margin="0,40,0,0" TextAlignment="Center" Text=" " Width="204"></TextBlock>
         </StackPanel>
+        <Button Width="150" Height="30" VerticalAlignment="Bottom" Content="Войти без регистрации" Opacity="1" Click="NonReg"></Button>
     </Grid>
 </Page>

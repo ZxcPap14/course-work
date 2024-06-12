@@ -20,6 +20,7 @@ namespace Olimp.Model
             this.Certificates = new HashSet<Certificates>();
             this.Participation = new HashSet<Participation>();
             this.Protocol = new HashSet<Protocol>();
+            this.Protocolss = new HashSet<Protocolss>();
         }
     
         public int OlympiadID { get; set; }
@@ -27,7 +28,6 @@ namespace Olimp.Model
         public int OrganizerID { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
-        public bool Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Certificates> Certificates { get; set; }
@@ -35,5 +35,7 @@ namespace Olimp.Model
         public virtual ICollection<Participation> Participation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Protocol> Protocol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Protocolss> Protocolss { get; set; }
     }
 }

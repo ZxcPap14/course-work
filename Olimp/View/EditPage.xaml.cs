@@ -101,7 +101,7 @@ namespace Olimp.View
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(selectedName);
+            //MessageBox.Show(selectedName);
             if (check(txtFullName.Text) == true && check(dpBirthDate.Text)==true && check(Email.Text)==true && check(Username.Text)==true && check(Password.Password)==true && check(Institution.Text) ==true && check(EducationLevel.Text)==true && check(Course.Text)==true && check(Specialty.Text)==true)
             {
                 if (isstudent == true)

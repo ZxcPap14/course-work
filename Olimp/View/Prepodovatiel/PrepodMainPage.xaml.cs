@@ -1,7 +1,4 @@
-﻿
-using Olimp.View;
-using Olimp.View.Prepod;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,26 +13,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Olimp
+namespace Olimp.View.Prepodovatiel
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для PrepodMainPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PrepodMainPage : Page
     {
-        public MainWindow()
+        public PrepodMainPage()
         {
             InitializeComponent();
-            MainFrame.Navigate(new View.Prepodovatiel.PrepodMainPage());
         }
 
-        private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
+        private void addStudnetov(object sender, RoutedEventArgs e)
         {
+            this.NavigationService.Navigate(new View.Prepodovatiel.AddNewStudent());
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void Result(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new View.Prepodovatiel.ResultOlimpPage());
         }
     }
 }

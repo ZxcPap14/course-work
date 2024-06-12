@@ -22,17 +22,15 @@ namespace Olimp.View
     public partial class AddOlimp : Page
     {
         Core db = new Core();
-        private readonly OLIMPEntities9 _context; 
 
         public AddOlimp()
         {
             InitializeComponent();
-            _context = new OLIMPEntities9();
             LoadTeachers();
         }
         private void LoadTeachers()
         {
-            List<Teachers> teachers = _context.Teachers.ToList();
+            List<Teachers> teachers = db.context.Teachers.ToList();
             ResponsibleTeacherComboBox.ItemsSource = teachers;
         }
 
@@ -51,31 +49,37 @@ namespace Olimp.View
 
                     
 
-                    if (db.context.Olympiads.FirstOrDefault(z => z.Name == olympiadName) == null)
+                if (db.context.Olympiads.FirstOrDefault(z => z.Name == olympiadName) == null)
+                {
+                    if (startDate < endDate)
                     {
-                            if (startDate < endDate)
-                            {
-                                var newOlimp = new Olympiads
-                                {
-                                    Name = olympiadName,
-                                    OrganizerID = teacherID,
-                                    StartDate = startDate,
-                                    EndDate = endDate,
-                                    Status = false
-                                };
-                                db.context.Olympiads.Add(newOlimp);
-                                db.context.SaveChanges();
-                                MessageBox.Show($"Название олимпиады: {olympiadName}\nОтветственный преподаватель: {selectedTeacher.FullName}\nДата начала олимпиады: {startDate}\nДата окончания олимпиады: {endDate}", "Информация о добавленной олимпиаде", MessageBoxButton.OK, MessageBoxImage.Information);
-                            }
-                            else
-                            {
-                                MessageBox.Show("Неверная длительность олимпиады");
-                            }
+                        var newOlimp = new Olympiads
+                        {
+                            Name = olympiadName,
+                            OrganizerID = teacherID,
+                            StartDate = startDate,
+                            EndDate = endDate,
+                        };
+                        var newprotocols = new Model.Protocol
+                        {
+                            OlympiadID = newOlimp.OlympiadID,
+                            Status = "Формируется"
+                        };
+                        db.context.Olympiads.Add(newOlimp);
+                        db.context.Protocol.Add(newprotocols);
+                        db.context.SaveChanges();
+                        MessageBox.Show($"Название олимпиады: {olympiadName}\nОтветственный преподаватель: {selectedTeacher.FullName}\nДата начала олимпиады: {startDate}\nДата окончания олимпиады: {endDate}", "Информация о добавленной олимпиаде", MessageBoxButton.OK, MessageBoxImage.Information);
+
                     }
                     else
                     {
-                        MessageBox.Show("Олимпиада с таким названием уже существует");
+                        MessageBox.Show("Неверная длительность олимпиады");
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Олимпиада с таким названием уже существует");
+                }
             }
             else
             {

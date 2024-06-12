@@ -31,7 +31,6 @@ namespace Olimp.View
         }
         private bool IsValidCredentials(string username, string password)
         {
-
             return !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password);
         }
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -55,12 +54,10 @@ namespace Olimp.View
                         }
                         if (user.UserType == 1)
                         {
-                            Info.Text = "1";
+                            MessageBox.Show("123");
+                            this.NavigationService.Navigate(new View.Prepodovatiel.PrepodMainPage());
                         }
                     }
-
-
-
                 }
                 else
                 {
@@ -69,6 +66,11 @@ namespace Olimp.View
 
             }
 
+
+        }
+
+        private void NonReg(object sender, RoutedEventArgs e)
+        {
 
         }
     }
