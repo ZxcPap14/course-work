@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -75,7 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Certificates.cs">
+    <Compile Include="Model\Certifikat.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Documents.cs">
@@ -144,8 +145,17 @@
     <Compile Include="View\Prepodovatiel\AddNewStudent.xaml.cs">
       <DependentUpon>AddNewStudent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Prepodovatiel\Certificate.xaml.cs">
+      <DependentUpon>Certificate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Prepodovatiel\PrepodMainPage.xaml.cs">
       <DependentUpon>PrepodMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Prepodovatiel\ProtocolsBack.xaml.cs">
+      <DependentUpon>ProtocolsBack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Prepodovatiel\ReportPage.xaml.cs">
+      <DependentUpon>ReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Prepodovatiel\ResultOlimpPage.xaml.cs">
       <DependentUpon>ResultOlimpPage.xaml</DependentUpon>
@@ -191,7 +201,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Prepodovatiel\Certificate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Prepodovatiel\PrepodMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Prepodovatiel\ProtocolsBack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Prepodovatiel\ReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,11 +289,26 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ClosedXML">
+      <Version>0.102.2</Version>
+    </PackageReference>
+    <PackageReference Include="DocumentFormat.OpenXml">
+      <Version>3.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="DocumentFormat.OpenXml.Framework">
+      <Version>3.0.2</Version>
+    </PackageReference>
     <PackageReference Include="EntityFramework">
       <Version>6.2.0</Version>
     </PackageReference>
     <PackageReference Include="EntityFramework.ru">
       <Version>6.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="EPPlus">
+      <Version>7.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="GSF.Core">
+      <Version>2.4.28</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies">
       <Version>1.0.0</Version>
@@ -288,6 +325,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Windows.SDK.Contracts">
       <Version>10.0.19041.1</Version>
+    </PackageReference>
+    <PackageReference Include="OfficeOpenXml.Core.ExcelPackage">
+      <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.WindowsRuntime">
       <Version>4.6.0</Version>
@@ -312,7 +352,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\diplomas\" />
     <Folder Include="View\NonRegUsers\" />
+    <Folder Include="View\Reg User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Model1.Context.tt">

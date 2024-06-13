@@ -25,7 +25,6 @@ namespace Olimp.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Certificates> Certificates { get; set; }
         public virtual DbSet<Olympiads> Olympiads { get; set; }
         public virtual DbSet<Participation> Participation { get; set; }
         public virtual DbSet<Protocol> Protocol { get; set; }
@@ -35,6 +34,7 @@ namespace Olimp.Model
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Teachers> Teachers { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Certifikat> Certifikat { get; set; }
         public virtual DbSet<Documents> Documents { get; set; }
         public virtual DbSet<Registrations_on_olimpiad> Registrations_on_olimpiad { get; set; }
         public virtual DbSet<Results> Results { get; set; }

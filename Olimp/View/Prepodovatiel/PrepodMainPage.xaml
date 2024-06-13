@@ -10,6 +10,10 @@
 
     <Grid>
         <Button Width="120" Height="30" Background="red" Content="Добавить ученика" Click="addStudnetov"/>
-        <Button Width="120" Height="30" Background="red" Content="Result" Click="Result" Margin="340,167,340,253"/>
+        <Button Width="120" Height="30" Background="red" Content="Result" Click="Result" Margin="340,175,340,245"/>
+        <Button Width="120" Height="30" Background="red" Content="Отчет" Click="Octhet" Margin="340,245,340,175"/>
+        <Button Width="120" Height="30" Background="red" Content="Отозвать протокол" Click="RedackProtocol" Margin="340,280,340,140"/>
+        <Button Width="120" Height="30" Background="red" Content="Добавить сертификат" Click="Sertifikat" Margin="340,315,340,105"/>
+
     </Grid>
 </Page>

@@ -12,12 +12,10 @@ namespace Olimp.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Certificates
+    public partial class Certifikat
     {
         public int CertificateID { get; set; }
-        public int OlympiadID { get; set; }
+        public Nullable<int> OlympiadID { get; set; }
         public string Name { get; set; }
-    
-        public virtual Olympiads Olympiads { get; set; }
     }
 }

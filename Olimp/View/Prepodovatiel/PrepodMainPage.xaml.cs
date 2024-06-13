@@ -34,5 +34,22 @@ namespace Olimp.View.Prepodovatiel
         {
             this.NavigationService.Navigate(new View.Prepodovatiel.ResultOlimpPage());
         }
+
+        private void Octhet(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new View.Prepodovatiel.ReportPage());
+
+        }
+
+        private void RedackProtocol(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new View.Prepodovatiel.ProtocolsBack());
+
+        }
+
+        private void Sertifikat(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new View.Prepodovatiel.Certificate());
+        }
     }
 }

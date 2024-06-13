@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olimp", "Olimp\Olimp.csproj", "{869FEB4F-A7DA-44CD-83B9-8875791D4CB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "olimp test", "olimp test\olimp test.csproj", "{EE8DAFCE-0465-43CE-B5A2-0CE39717EBA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{869FEB4F-A7DA-44CD-83B9-8875791D4CB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{869FEB4F-A7DA-44CD-83B9-8875791D4CB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{869FEB4F-A7DA-44CD-83B9-8875791D4CB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE8DAFCE-0465-43CE-B5A2-0CE39717EBA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE8DAFCE-0465-43CE-B5A2-0CE39717EBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE8DAFCE-0465-43CE-B5A2-0CE39717EBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE8DAFCE-0465-43CE-B5A2-0CE39717EBA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

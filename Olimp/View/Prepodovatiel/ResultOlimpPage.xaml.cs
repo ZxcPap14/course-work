@@ -1,6 +1,7 @@
 ﻿using Olimp.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -42,18 +43,42 @@ namespace Olimp.View.Prepodovatiel
         private void SaveNewResult(object sender, RoutedEventArgs e)
         {
             var studentIdD = db.context.Students.FirstOrDefault(u => u.FullName == Student_name.Text);
-            var resultss = new Results 
-            { 
-                protocol_id = Convert.ToInt32(Protocol_name.Text),
-                student_id = Convert.ToInt32(studentIdD.StudentID),
-                score = Convert.ToInt32(score_tete.Text),
-                result = resultt.Text,
-            };
-            MessageBox.Show(resultss.protocol_id.ToString() + "\n" +resultss.student_id + "\n" + resultss.score + "\n" + resultss.result);
-            db.context.Results.Add(resultss);
-            db.context.SaveChanges();
-            MessageBox.Show("Успех");
+            int qqw = studentIdD.StudentID;
+            string asd = Protocol_name.Text;
+            int assdd = int.Parse(asd);
+            string fff = score_tete.Text;
+            int fffq = int.Parse(fff);
 
+            string insertQuery = "INSERT INTO Results (protocol_id, student_id, score, result) VALUES (@protocol_id, @student_id, @score, @result)";
+
+            using (var command = db.context.Database.Connection.CreateCommand())
+            {
+                command.CommandText = insertQuery;
+                command.Parameters.Add(new SqlParameter("@protocol_id", assdd));
+                command.Parameters.Add(new SqlParameter("@student_id", qqw));
+                command.Parameters.Add(new SqlParameter("@score", fffq));
+                command.Parameters.Add(new SqlParameter("@result", resultt.Text));
+
+                db.context.Database.Connection.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Успех");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    db.context.Database.Connection.Close();
+                }
+            }
+        }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
         }
     }
 }

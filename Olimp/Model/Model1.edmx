@@ -5,13 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище OLIMPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Certificates">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "OLIMP.dbo.Certifikat" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Certifikat">
           <Key>
             <PropertyRef Name="CertificateID" />
           </Key>
-          <Property Name="CertificateID" Type="int" Nullable="false" />
-          <Property Name="OlympiadID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CertificateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OlympiadID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "OLIMP.dbo.Documents" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -150,18 +152,6 @@
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserType" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Certifica__Olymp__47DBAE45">
-          <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="1" />
-          <End Role="Certificates" Type="Self.Certificates" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Olympiads">
-              <PropertyRef Name="OlympiadID" />
-            </Principal>
-            <Dependent Role="Certificates">
-              <PropertyRef Name="OlympiadID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Participa__Olymp__3D5E1FD2">
           <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="0..1" />
           <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
@@ -235,7 +225,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище OLIMPModelContainer">
-          <EntitySet Name="Certificates" EntityType="Self.Certificates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Olympiads" EntityType="Self.Olympiads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Participation" EntityType="Self.Participation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Protocol" EntityType="Self.Protocol" Schema="dbo" store:Type="Tables" />
@@ -245,6 +234,13 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Certifikat" EntityType="Self.Certifikat" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Certifikat].[CertificateID] AS [CertificateID], 
+    [Certifikat].[OlympiadID] AS [OlympiadID], 
+    [Certifikat].[Name] AS [Name]
+    FROM [dbo].[Certifikat] AS [Certifikat]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Documents" EntityType="Self.Documents" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Documents].[id] AS [id], 
@@ -270,10 +266,6 @@
     [Results].[result] AS [result]
     FROM [dbo].[Results] AS [Results]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__Certifica__Olymp__47DBAE45" Association="Self.FK__Certifica__Olymp__47DBAE45">
-            <End Role="Olympiads" EntitySet="Olympiads" />
-            <End Role="Certificates" EntitySet="Certificates" />
-          </AssociationSet>
           <AssociationSet Name="FK__Participa__Olymp__3D5E1FD2" Association="Self.FK__Participa__Olymp__3D5E1FD2">
             <End Role="Olympiads" EntitySet="Olympiads" />
             <End Role="Participation" EntitySet="Participation" />
@@ -304,15 +296,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OLIMPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Certificates">
-          <Key>
-            <PropertyRef Name="CertificateID" />
-          </Key>
-          <Property Name="CertificateID" Type="Int32" Nullable="false" />
-          <Property Name="OlympiadID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Olympiads" Relationship="Self.FK__Certifica__Olymp__47DBAE45" FromRole="Certificates" ToRole="Olympiads" />
-        </EntityType>
         <EntityType Name="Olympiads">
           <Key>
             <PropertyRef Name="OlympiadID" />
@@ -322,7 +305,6 @@
           <Property Name="OrganizerID" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Certificates" Relationship="Self.FK__Certifica__Olymp__47DBAE45" FromRole="Olympiads" ToRole="Certificates" />
           <NavigationProperty Name="Participation" Relationship="Self.FK__Participa__Olymp__3D5E1FD2" FromRole="Olympiads" ToRole="Participation" />
           <NavigationProperty Name="Protocol" Relationship="Self.FK__Protocol__Olympi__403A8C7D" FromRole="Olympiads" ToRole="Protocol" />
           <NavigationProperty Name="Protocolss" Relationship="Self.FK_Protocols_Olympiads" FromRole="Olympiads" ToRole="Protocolss" />
@@ -423,6 +405,14 @@
           <NavigationProperty Name="Participation" Relationship="Self.FK__Participa__UserI__3C69FB99" FromRole="Users" ToRole="Participation" />
           <NavigationProperty Name="Reports" Relationship="Self.FK__Reports__UserID__4316F928" FromRole="Users" ToRole="Reports" />
         </EntityType>
+        <EntityType Name="Certifikat">
+          <Key>
+            <PropertyRef Name="CertificateID" />
+          </Key>
+          <Property Name="CertificateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OlympiadID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Documents">
           <Key>
             <PropertyRef Name="id" />
@@ -451,18 +441,6 @@
           <Property Name="score" Type="Int32" />
           <Property Name="result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <Association Name="FK__Certifica__Olymp__47DBAE45">
-          <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="1" />
-          <End Role="Certificates" Type="Self.Certificates" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Olympiads">
-              <PropertyRef Name="OlympiadID" />
-            </Principal>
-            <Dependent Role="Certificates">
-              <PropertyRef Name="OlympiadID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Participa__Olymp__3D5E1FD2">
           <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="0..1" />
           <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
@@ -536,7 +514,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="OLIMPEntities10" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Certificates" EntityType="Self.Certificates" />
           <EntitySet Name="Olympiads" EntityType="Self.Olympiads" />
           <EntitySet Name="Participation" EntityType="Self.Participation" />
           <EntitySet Name="Protocol" EntityType="Self.Protocol" />
@@ -546,13 +523,10 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" />
           <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Certifikat" EntityType="Self.Certifikat" />
           <EntitySet Name="Documents" EntityType="Self.Documents" />
           <EntitySet Name="Registrations_on_olimpiad" EntityType="Self.Registrations_on_olimpiad" />
           <EntitySet Name="Results" EntityType="Self.Results" />
-          <AssociationSet Name="FK__Certifica__Olymp__47DBAE45" Association="Self.FK__Certifica__Olymp__47DBAE45">
-            <End Role="Olympiads" EntitySet="Olympiads" />
-            <End Role="Certificates" EntitySet="Certificates" />
-          </AssociationSet>
           <AssociationSet Name="FK__Participa__Olymp__3D5E1FD2" Association="Self.FK__Participa__Olymp__3D5E1FD2">
             <End Role="Olympiads" EntitySet="Olympiads" />
             <End Role="Participation" EntitySet="Participation" />
@@ -584,15 +558,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище OLIMPModelContainer" CdmEntityContainer="OLIMPEntities10">
-          <EntitySetMapping Name="Certificates">
-            <EntityTypeMapping TypeName="OLIMPModel.Certificates">
-              <MappingFragment StoreEntitySet="Certificates">
-                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
-                <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Olympiads">
             <EntityTypeMapping TypeName="OLIMPModel.Olympiads">
               <MappingFragment StoreEntitySet="Olympiads">
@@ -696,6 +661,15 @@
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Certifikat">
+            <EntityTypeMapping TypeName="OLIMPModel.Certifikat">
+              <MappingFragment StoreEntitySet="Certifikat">
+                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+                <ScalarProperty Name="OlympiadID" ColumnName="OlympiadID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

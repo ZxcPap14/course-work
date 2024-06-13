@@ -4,21 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="229a4f598c8746fc91e342805ee0fd2d" Name="Diagram1">
-        <EntityTypeShape EntityType="OLIMPModel.Certificates" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Olympiads" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Participation" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Protocol" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Protocolss" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Reports" Width="1.5" PointX="6" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Students" Width="1.5" PointX="8.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Teachers" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Users" Width="1.5" PointX="3.75" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Documents" Width="1.5" PointX="8.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Registrations_on_olimpiad" Width="1.5" PointX="5.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OLIMPModel.Results" Width="1.5" PointX="8.75" PointY="8.5" IsExpanded="true" />
-        <AssociationConnector Association="OLIMPModel.FK__Certifica__Olymp__47DBAE45" ManuallyRouted="false" />
+      <Diagram DiagramId="1acdb0ec60f442dbb4974492bb91c6b9" Name="Diagram1">
+        <EntityTypeShape EntityType="OLIMPModel.Olympiads" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Participation" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Protocol" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Protocolss" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Reports" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Students" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Teachers" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Users" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Certifikat" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Documents" Width="1.5" PointX="7.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Registrations_on_olimpiad" Width="1.5" PointX="5.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OLIMPModel.Results" Width="1.5" PointX="7.75" PointY="7.375" IsExpanded="true" />
         <AssociationConnector Association="OLIMPModel.FK__Participa__Olymp__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="OLIMPModel.FK__Protocol__Olympi__403A8C7D" ManuallyRouted="false" />
         <AssociationConnector Association="OLIMPModel.FK_Protocols_Olympiads" ManuallyRouted="false" />
