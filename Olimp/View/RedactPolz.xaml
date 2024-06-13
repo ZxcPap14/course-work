@@ -9,19 +9,19 @@
       Title="RedactPolz">
 
     <Grid>
-        <Button Background="red" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top" Content="назад" Click="Button_Click" Height="30"/>
-   
-        <Button Background="Blue" Width="51" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="delete" Click="Delete_Click" Margin="60,0,0,0"></Button>
-        
-        <Button Background="Green" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Edit" Click="Edit_Click" Height="30" Margin="120,0,0,0"/>
+        <Button Background="#E98074" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top" Content="назад" Click="Button_Click" Height="30"/>
+
+        <Button Background="red" Width="51" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="delete" Click="Delete_Click" Margin="60,0,0,0"></Button>
+
+        <Button Background="#E98074" Width="55" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Edit" Click="Edit_Click" Height="30" Margin="120,0,0,0"/>
         
         <Grid Margin="0,35,0,0" >
 
 
-            <ListView x:Name="listviewUsers1"  
+            <ListView  Background="#D8C3A5" x:Name="listviewUsers1"  
                   Margin="10,25,10,10" SelectionChanged="listviewUsers1_SelectionChanged">
-                <ListView.View>
-                    <GridView>
+                <ListView.View >
+                    <GridView >
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FullName}" 
                       Header="FullName" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=BirthDate}" 

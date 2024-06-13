@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Olimp"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1300">
-    <Grid>
+    <Grid Background="#EAE7DC">
         <Frame x:Name="MainFrame"/>
     </Grid>
 </Window>

@@ -54,37 +54,52 @@ namespace Olimp.View
                 //MessageBox.Show($"Selected name: {selectedName}", "Selected Name", MessageBoxButton.OK);
             }
                 
-            bool isNameExists = db.context.Students.Any(s => s.Login == selectedName);
+           
 
-            if (isNameExists)
+            if (txtFullName.Text!= null && dpBirthDate.Text!= null && Email.Text!=null && Username.Text!=null && Password.Password != null && Institution.Text != null && EducationLevel.Text != null && Course.Text != null && Specialty.Text != null)
             {
-                
-                isstudent = true;
-                var student = db.context.Students.FirstOrDefault(s => s.Login == selectedName);
-                txtFullName.Text = student.FullName;
-                dpBirthDate.SelectedDate = student.BirthDate;
-                Email.Text = student.Email;
-                Username.Text = student.Login;
-                Password.Password = student.Password;
-                Institution.Text = student.Institution;
-                EducationLevel.Text = student.EducationLevel;
-                Course.Text = student.Course.ToString();
-                Specialty.Text = student.Specialty;
+                if (!txtFullName.Text.Any(char.IsDigit))
+                {
+                    bool isNameExists = db.context.Students.Any(s => s.Login == selectedName);
+                    if (isNameExists)
+                    {
+
+                        isstudent = true;
+                        var student = db.context.Students.FirstOrDefault(s => s.Login == selectedName);
+                        txtFullName.Text = student.FullName;
+                        dpBirthDate.SelectedDate = student.BirthDate;
+                        Email.Text = student.Email;
+                        Username.Text = student.Login;
+                        Password.Password = student.Password;
+                        Institution.Text = student.Institution;
+                        EducationLevel.Text = student.EducationLevel;
+                        Course.Text = student.Course.ToString();
+                        Specialty.Text = student.Specialty;
+                    }
+
+                    else
+                    {
+                        isstudent = false;
+                        var prepod = db.context.Teachers.FirstOrDefault(s => s.Login == selectedName);
+                        txtFullName.Text = prepod.FullName;
+                        dpBirthDate.SelectedDate = prepod.BirthDate;
+                        Email.Text = prepod.Email;
+                        Username.Text = prepod.Login;
+                        Password.Password = prepod.Password;
+                        Institution.Text = prepod.Institution;
+                        EducationLevel.Text = prepod.EducationLevel;
+                        Course.Text = prepod.Course.ToString();
+                        Specialty.Text = prepod.Specialty;
+                    }
+                }
+                {
+                    MessageBox.Show("Имя не должен содержать цифр");
+                }
             }
-                
             else
             {
-                isstudent = false;
-                var prepod = db.context.Teachers.FirstOrDefault(s => s.Login == selectedName);
-                txtFullName.Text = prepod.FullName;
-                dpBirthDate.SelectedDate = prepod.BirthDate;
-                Email.Text = prepod.Email;
-                Username.Text = prepod.Login;
-                Password.Password = prepod.Password;
-                Institution.Text = prepod.Institution;
-                EducationLevel.Text = prepod.EducationLevel;
-                Course.Text = prepod.Course.ToString();
-                Specialty.Text = prepod.Specialty;
+                MessageBox.Show("Не все поля заполненый");
+
             }
         }
 

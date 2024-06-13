@@ -1,4 +1,5 @@
-﻿using Olimp.Model;
+﻿using GSF;
+using Olimp.Model;
 using Olimp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -39,29 +40,36 @@ namespace Olimp.View
             string password = passwordBox.Password;
             if (!IsValidCredentials(name, password))
             {
-                Info.Text = "Не все поля заполнены";
+                MessageBox.Show("Не все поля заполнены");
             }
             else
             {
-                Info.Text = null;
-                if (UserVM.CheckAuth(name, password))
+                if (!name.Any(char.IsDigit))
                 {
-                    foreach (var user in db.context.Users.ToList().Where(x => x.Username == name && x.Password == UserVM.HashPassword(password)))
+                    
+                    if (UserVM.CheckAuth(name, password))
                     {
-                        if (user.UserType == 0)
+                        foreach (var user in db.context.Users.ToList().Where(x => x.Username == name && x.Password == UserVM.HashPassword(password)))
                         {
-                            this.NavigationService.Navigate(new AdminPage());
+                            if (user.UserType == 0)
+                            {
+                                this.NavigationService.Navigate(new AdminPage());
+                            }
+                            if (user.UserType == 1)
+                            {
+                                MessageBox.Show("123");
+                                this.NavigationService.Navigate(new View.Prepodovatiel.PrepodMainPage());
+                            }
                         }
-                        if (user.UserType == 1)
-                        {
-                            MessageBox.Show("123");
-                            this.NavigationService.Navigate(new View.Prepodovatiel.PrepodMainPage());
-                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неверные данные");
                     }
                 }
                 else
                 {
-                    Info.Text = "Неверные данные";
+                    MessageBox.Show("Логин не должен содержать цифры");
                 }
 
             }

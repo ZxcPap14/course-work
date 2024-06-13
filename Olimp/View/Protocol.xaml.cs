@@ -100,5 +100,9 @@ namespace Olimp.View
             }
         }
 
+        private void PublishBtton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

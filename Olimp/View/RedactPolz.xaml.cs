@@ -56,6 +56,7 @@ namespace Olimp.View
                 db.context.SaveChanges();
                 RefreshListView();
             }
+            MessageBox.Show("Пользователь успешно удален");
 
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)

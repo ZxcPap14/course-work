@@ -5,53 +5,56 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Olimp.View.Prepod"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1300"
       Title="AddPrepodPage">
 
-    <Grid>
-        
+    <Grid Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <!-- Add more RowDefinitions as needed -->
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
-
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
-        <Grid Width="40" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <UniformGrid Rows="1">
-                <UniformGrid.Resources>
-                    <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}"/>
-                </UniformGrid.Resources>
-                <RadioButton Content="C" Checked="RadioButton_Checked"/>
-                <RadioButton Content="П" Checked="RadioButton_Checked"/>
-            </UniformGrid>
-        </Grid>
-        <Label Grid.Column="0" Content="ФИО:" VerticalAlignment="Center"/>
-        <TextBox Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="FullNameTextBox"/>
 
-        <Label Grid.Column="0" Content="Дата рождения:" VerticalAlignment="Center" Margin="0,30,0,0"/>
-        <DatePicker Grid.Column="1" Margin="5,30,5,0" VerticalAlignment="Center" x:Name="BirthDatePicker"/>
+        <!-- Labels and Input Fields -->
+        <Label Grid.Row="0" Grid.Column="0" Content="ФИО:" VerticalAlignment="Center"/>
+        <TextBox Width="500" Height="22"   Background="#D8C3A5" Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="FullNameTextBox"/>
 
-        <Label Grid.Column="0" Content="Email:" VerticalAlignment="Center" Margin="0,60,0,0"/>
-        <TextBox Grid.Column="1" Margin="5,60,5,0" VerticalAlignment="Center" x:Name="EmailTextBox"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Дата рождения:" VerticalAlignment="Center" Margin="0,10,0,0"/>
+        <DatePicker Width="500" Height="22" Background="#D8C3A5" Grid.Row="1" Grid.Column="1" Margin="5,10,5,0" VerticalAlignment="Center" x:Name="BirthDatePicker"/>
 
-        <Label Grid.Column="0" Content="Логин:" VerticalAlignment="Center" Margin="0,90,0,0"/>
-        <TextBox Grid.Column="1" Margin="5,90,5,0" VerticalAlignment="Center" x:Name="LoginTextBox"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Email:" VerticalAlignment="Center" Margin="0,10,0,0"/>
+        <TextBox Width="500" Height="22" Background="#D8C3A5" Grid.Row="2" Grid.Column="1" Margin="5,10,5,0" VerticalAlignment="Center" x:Name="EmailTextBox"/>
 
-        <Label Grid.Column="0" Content="Пароль:" VerticalAlignment="Center" Margin="0,120,0,0"/>
-        <PasswordBox Grid.Column="1" Margin="5,120,5,0" VerticalAlignment="Center" x:Name="PasswordBox"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Логин:" VerticalAlignment="Center" Margin="0,10,0,0"/>
+        <TextBox Width="500" Height="22" Background="#D8C3A5" Grid.Row="3" Grid.Column="1" Margin="5,10,5,0" VerticalAlignment="Center" x:Name="LoginTextBox"/>
 
-        <Label Grid.Column="0" Content="Учебное заведение:" VerticalAlignment="Center" Margin="0,150,0,0"/>
-        <TextBox Grid.Column="1" Margin="5,150,5,0" VerticalAlignment="Center" x:Name="InstitutionTextBox"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Пароль:" VerticalAlignment="Center" Margin="0,10,0,0"/>
+        <PasswordBox Width="500" Height="22" Background="#D8C3A5" Grid.Row="4" Grid.Column="1" Margin="5,10,5,0" VerticalAlignment="Center" x:Name="PasswordBox"/>
 
-        <Label Grid.Column="0" Content="Уровень образования:" VerticalAlignment="Center" Margin="0,180,0,0"/>
-        <ComboBox Grid.Column="1" Margin="5,180,5,0" VerticalAlignment="Center" x:Name="EducationLevelComboBox">
+        <Label Grid.Row="5" Grid.Column="0" Content="Учебное заведение:" VerticalAlignment="Center" Margin="0,10,0,0"/>
+        <TextBox Width="500" Height="22"  Background="#D8C3A5" Grid.Row="5" Grid.Column="1" Margin="5,10,5,0" VerticalAlignment="Center" x:Name="InstitutionTextBox"/>
+
+        <Label Grid.Row="6" Grid.Column="0" Content="Уровень образования:" VerticalAlignment="Center" Margin="0,10,0,0"/>
+        <ComboBox Width="500" Height="22" Background="#D8C3A5" Grid.Row="6" Grid.Column="1" Margin="5,10,5,0" VerticalAlignment="Center" x:Name="EducationLevelComboBox">
             <ComboBoxItem Content="Бакалавр"/>
             <ComboBoxItem Content="Магистр"/>
             <ComboBoxItem Content="Доктор наук"/>
         </ComboBox>
 
-        <Label Grid.Column="0" Content="Курс обучения:" VerticalAlignment="Center" Margin="0,210,0,0"/>
-       
-        <ComboBox Grid.Column="1" Margin="5,210,5,0" VerticalAlignment="Center" x:Name="CourseTextBox">
+        <Label Grid.Row="7" Grid.Column="0" Content="Курс обучения:" VerticalAlignment="Center" Margin="0,10,0,0"/>
+        <ComboBox Width="500" Height="22" Background="#D8C3A5" Grid.Row="7" Grid.Column="1" Margin="5,10,5,0" VerticalAlignment="Center" x:Name="CourseTextBox">
             <ComboBoxItem Content="1"/>
             <ComboBoxItem Content="2"/>
             <ComboBoxItem Content="3"/>
@@ -59,11 +62,12 @@
             <ComboBoxItem Content="5"/>
             <ComboBoxItem Content="6"/>
         </ComboBox>
-        <Label Grid.Column="0" Content="Специальность:" VerticalAlignment="Center" Margin="0,240,0,0"/>
-        <TextBox Grid.Column="1" Margin="5,240,5,0" VerticalAlignment="Center" x:Name="SpecialtyTextBox"/>
 
-        <Button Grid.Column="1" Margin="5,270,5,5" VerticalAlignment="Center" Content="Добавить" Click="AddTeacherButton_Click"/>
-        <TextBlock x:Name="testfor" Text="123" Grid.Column="1" Margin="392,90,140,-90"></TextBlock>
-        <Button Background="red" Margin="0,0,67,0" VerticalAlignment="Top" Content="назад" Click="Button_Click_1"/>
+        <Label Grid.Row="8" Grid.Column="0" Content="Специальность:" VerticalAlignment="Center" Margin="0,10,0,0"/>
+        <TextBox Width="500" Height="22" Background="#D8C3A5" Grid.Row="8" Grid.Column="1" Margin="5,10,5,0" VerticalAlignment="Top" x:Name="SpecialtyTextBox"/>
+
+        <!-- Buttons -->
+        <Button Background="#E98074" Grid.Row="8" Grid.Column="1" Margin="156,47,155,0" VerticalAlignment="Top" Content="Добавить" Click="AddTeacherButton_Click"/>
+
     </Grid>
 </Page>
