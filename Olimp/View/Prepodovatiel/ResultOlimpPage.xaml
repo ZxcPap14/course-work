@@ -9,7 +9,7 @@
       Title="ResultOlimpPage">
 
     <Grid Background="Wheat">
-        <Button Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Назад" Click="Back"/>
+        <Button Background="#E98074" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Назад" Click="Back"/>
         <Grid Background="Wheat" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -35,7 +35,7 @@
             <Label Content="Результат:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
             <TextBox x:Name="resultt" Grid.Row="3" Grid.Column="1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5"/>
 
-            <Button Grid.Row="4" Grid.Column="1" Width="200" Height="30" Margin="5" Click="SaveNewResult" Content="Сохранить" HorizontalAlignment="Left"/>
+            <Button Background="#E98074" Grid.Row="4" Grid.Column="1" Width="200" Height="30" Margin="5" Click="SaveNewResult" Content="Сохранить" HorizontalAlignment="Left"/>
         </Grid>
     </Grid>
 </Page>

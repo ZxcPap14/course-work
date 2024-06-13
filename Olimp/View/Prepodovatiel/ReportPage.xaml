@@ -10,9 +10,9 @@
 
     <Grid Background="Wheat">
 
-        <Button Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Back" Content="Назад"/>
+        <Button Background="#E98074" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Back" Content="Назад"/>
 
         <TextBox x:Name="Names" Width="200" Height="30" Margin="0,195,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Button Width="200" Height="30" Margin="0,240,0,180" Click="GenerateReport" Content="Создать отчет" HorizontalAlignment="Center"/>
+        <Button Background="#E98074" Width="200" Height="30" Margin="0,240,0,180" Click="GenerateReport" Content="Создать отчет" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

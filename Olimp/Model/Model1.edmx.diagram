@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1acdb0ec60f442dbb4974492bb91c6b9" Name="Diagram1">
+      <Diagram DiagramId="1acdb0ec60f442dbb4974492bb91c6b9" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="OLIMPModel.Olympiads" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OLIMPModel.Participation" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OLIMPModel.Protocol" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />

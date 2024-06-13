@@ -9,14 +9,14 @@
       Title="Certificate">
 
     <Grid>
-        <Button Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Назад" Click="Back"/>
+        <Button Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Назад" Click="Back" Background="#E98074"/>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="80,0,0,0"  >
             <Label Content="Название" Margin="0,76,0,132"/>
             <TextBox x:Name="Naz" Height="30" Width="200"/>
             <Label Content="Олимпиада" Margin="0,132,0,76"/>
             <ComboBox  Height="30" Width="200" Margin="0,158,0,46" x:Name="glhf" IsTextSearchEnabled="True" DisplayMemberPath="OlympiadID">
             </ComboBox>
-            <Button Width="100" Height="30" Margin="50,204,50,0" Click="holokok" Content="Сохранить"></Button>
+            <Button Width="100" Height="30" Margin="50,204,50,0" Click="holokok" Background="#E98074" Content="Сохранить"></Button>
         </Grid>
             <DataGrid  CanUserAddRows="False" x:Name="ProtocolsDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Right"  Height="300" Margin="0,0,80,0" VerticalAlignment="Center" Width="auto">
                 <DataGrid.Columns>
