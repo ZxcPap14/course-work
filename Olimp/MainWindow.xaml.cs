@@ -26,10 +26,11 @@ namespace Olimp
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new View.Prepodovatiel.PrepodMainPage());
+            //MainFrame.Navigate(new View.Prepodovatiel.PrepodMainPage());
             //MainFrame.Navigate(new View.Prepodovatiel.Certificate());
             //MainFrame.Navigate(new View.AdminPage());
             //MainFrame.Navigate(new View.AuthPage());
+            MainFrame.Navigate(new View.Prepodovatiel.EditResults());
 
         }
 

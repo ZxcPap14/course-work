@@ -36,7 +36,7 @@ namespace Olimp.View.Prepodovatiel
         private void AddTeacherButton_Click(object sender, RoutedEventArgs e)
         {
 
-            var dbContext = new OLIMPEntities10();
+            var dbContext = new OLIMPEntities13();
             var existingUser = db.context.Users.FirstOrDefault(u => u.Username == LoginTextBox.Text);
             var existingStudent = db.context.Students.FirstOrDefault(t => t.Email == EmailTextBox.Text);
             

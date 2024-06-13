@@ -148,6 +148,9 @@
     <Compile Include="View\Prepodovatiel\Certificate.xaml.cs">
       <DependentUpon>Certificate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Prepodovatiel\EditResults.xaml.cs">
+      <DependentUpon>EditResults.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Prepodovatiel\PrepodMainPage.xaml.cs">
       <DependentUpon>PrepodMainPage.xaml</DependentUpon>
     </Compile>
@@ -202,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Prepodovatiel\Certificate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Prepodovatiel\EditResults.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

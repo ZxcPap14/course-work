@@ -53,7 +53,7 @@ namespace Olimp.View.Prepod
         private void AddTeacherButton_Click(object sender, RoutedEventArgs e)
         {
             
-            var dbContext = new OLIMPEntities10();
+            var dbContext = new OLIMPEntities13();
             var existingUser = db.context.Users.FirstOrDefault(u => u.Username == LoginTextBox.Text);
             var existingTeacher = db.context.Teachers.FirstOrDefault(t => t.Email == EmailTextBox.Text);
             

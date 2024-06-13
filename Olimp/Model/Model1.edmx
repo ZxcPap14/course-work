@@ -83,8 +83,6 @@
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="ReportType" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "OLIMP.dbo.Results" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Results">
           <Key>
             <PropertyRef Name="id" />
@@ -230,6 +228,7 @@
           <EntitySet Name="Protocol" EntityType="Self.Protocol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Protocolss" EntityType="Self.Protocolss" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
@@ -256,15 +255,6 @@
     [Registrations_on_olimpiad].[olympiad_id] AS [olympiad_id], 
     [Registrations_on_olimpiad].[student_id] AS [student_id]
     FROM [dbo].[Registrations_on_olimpiad] AS [Registrations_on_olimpiad]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Results" EntityType="Self.Results" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Results].[id] AS [id], 
-    [Results].[protocol_id] AS [protocol_id], 
-    [Results].[student_id] AS [student_id], 
-    [Results].[score] AS [score], 
-    [Results].[result] AS [result]
-    FROM [dbo].[Results] AS [Results]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__Participa__Olymp__3D5E1FD2" Association="Self.FK__Participa__Olymp__3D5E1FD2">
             <End Role="Olympiads" EntitySet="Olympiads" />
@@ -351,6 +341,16 @@
           <Property Name="ReportType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Reports__UserID__4316F928" FromRole="Reports" ToRole="Users" />
         </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="protocol_id" Type="Int32" />
+          <Property Name="student_id" Type="Int32" />
+          <Property Name="score" Type="Int32" />
+          <Property Name="result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Students">
           <Key>
             <PropertyRef Name="StudentID" />
@@ -431,16 +431,6 @@
           <Property Name="olympiad_id" Type="Int32" />
           <Property Name="student_id" Type="Int32" />
         </EntityType>
-        <EntityType Name="Results">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="protocol_id" Type="Int32" />
-          <Property Name="student_id" Type="Int32" />
-          <Property Name="score" Type="Int32" />
-          <Property Name="result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <Association Name="FK__Participa__Olymp__3D5E1FD2">
           <End Role="Olympiads" Type="Self.Olympiads" Multiplicity="0..1" />
           <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
@@ -513,12 +503,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="OLIMPEntities10" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OLIMPEntities13" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Olympiads" EntityType="Self.Olympiads" />
           <EntitySet Name="Participation" EntityType="Self.Participation" />
           <EntitySet Name="Protocol" EntityType="Self.Protocol" />
           <EntitySet Name="Protocolss" EntityType="Self.Protocolss" />
           <EntitySet Name="Reports" EntityType="Self.Reports" />
+          <EntitySet Name="Results" EntityType="Self.Results" />
           <EntitySet Name="Students" EntityType="Self.Students" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" />
@@ -526,7 +517,6 @@
           <EntitySet Name="Certifikat" EntityType="Self.Certifikat" />
           <EntitySet Name="Documents" EntityType="Self.Documents" />
           <EntitySet Name="Registrations_on_olimpiad" EntityType="Self.Registrations_on_olimpiad" />
-          <EntitySet Name="Results" EntityType="Self.Results" />
           <AssociationSet Name="FK__Participa__Olymp__3D5E1FD2" Association="Self.FK__Participa__Olymp__3D5E1FD2">
             <End Role="Olympiads" EntitySet="Olympiads" />
             <End Role="Participation" EntitySet="Participation" />
@@ -557,7 +547,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище OLIMPModelContainer" CdmEntityContainer="OLIMPEntities10">
+        <EntityContainerMapping StorageEntityContainer="Хранилище OLIMPModelContainer" CdmEntityContainer="OLIMPEntities13">
           <EntitySetMapping Name="Olympiads">
             <EntityTypeMapping TypeName="OLIMPModel.Olympiads">
               <MappingFragment StoreEntitySet="Olympiads">
@@ -606,6 +596,17 @@
                 <ScalarProperty Name="ReportID" ColumnName="ReportID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="OLIMPModel.Results">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="protocol_id" ColumnName="protocol_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="result" ColumnName="result" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -690,17 +691,6 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="olympiad_id" ColumnName="olympiad_id" />
                 <ScalarProperty Name="student_id" ColumnName="student_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Results">
-            <EntityTypeMapping TypeName="OLIMPModel.Results">
-              <MappingFragment StoreEntitySet="Results">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="protocol_id" ColumnName="protocol_id" />
-                <ScalarProperty Name="student_id" ColumnName="student_id" />
-                <ScalarProperty Name="score" ColumnName="score" />
-                <ScalarProperty Name="result" ColumnName="result" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

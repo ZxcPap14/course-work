@@ -75,10 +75,49 @@ namespace Olimp.View.Prepodovatiel
                 }
             }
         }
+        //private void AddZ(object sender, RoutedEventArgs e)
+        //{
+        //    string first = AddDateBox.Text;
+        //    string second = AddServiceBox.Text;
+        //    string tretuy = AddStatusBox.Text;
+        //    string chetvertyi = AddTimeBox.Text;
+
+        //    string insertQuery = "INSERT INTO Orders (order_date, services, status, perform_time ) VALUES (@first, @second, @tretuy, @chetvertyi)";
+        //    using (var command = db.context.Database.Connection.CreateCommand())
+        //    {
+        //        command.CommandText = insertQuery;
+        //        command.Parameters.Add(new SqlParameter("@first", first));
+        //        command.Parameters.Add(new SqlParameter("@second", second));
+        //        command.Parameters.Add(new SqlParameter("@tretuy", tretuy));
+        //        command.Parameters.Add(new SqlParameter("@chetvertyi", chetvertyi));
+        //        db.context.Database.Connection.Open();
+        //        try
+        //        {
+        //            command.ExecuteNonQuery();
+        //            MessageBox.Show("Успех");
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message);
+        //        }
+        //        finally
+        //        {
+        //            db.context.Database.Connection.Close();
+        //        }
+
+
+        //    }
+
+        //}
 
         private void Back(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();
+        }
+
+        private void jopa(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new View.Prepodovatiel.EditResults());
         }
     }
 }
