@@ -16,6 +16,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -142,6 +142,12 @@
     <Compile Include="View\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NonRegUsers\AllOlimp.xaml.cs">
+      <DependentUpon>AllOlimp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NonRegUsers\NonRegUserMainPage.xaml.cs">
+      <DependentUpon>NonRegUserMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Prepodovatiel\AddNewStudent.xaml.cs">
       <DependentUpon>AddNewStudent.xaml</DependentUpon>
     </Compile>
@@ -166,11 +172,26 @@
     <Compile Include="View\Prepod\AddPrepodPage.xaml.cs">
       <DependentUpon>AddPrepodPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Prepod\ResultForNonReg.xaml.cs">
+      <DependentUpon>ResultForNonReg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Protocol.xaml.cs">
       <DependentUpon>Protocol.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RedactPolz.xaml.cs">
       <DependentUpon>RedactPolz.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reg User\RegUserMainPageZV.xaml.cs">
+      <DependentUpon>RegUserMainPageZV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reg User\ResyltatiOlimpiadiGG.xaml.cs">
+      <DependentUpon>ResyltatiOlimpiadiGG.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reg User\UserPageEdit.xaml.cs">
+      <DependentUpon>UserPageEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reg User\Zapis.xaml.cs">
+      <DependentUpon>Zapis.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +218,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NonRegUsers\AllOlimp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NonRegUsers\NonRegUserMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,11 +261,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Prepod\ResultForNonReg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Protocol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RedactPolz.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reg User\RegUserMainPageZV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reg User\ResyltatiOlimpiadiGG.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reg User\UserPageEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reg User\Zapis.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -360,8 +409,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\diplomas\" />
-    <Folder Include="View\NonRegUsers\" />
-    <Folder Include="View\Reg User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Model1.Context.tt">

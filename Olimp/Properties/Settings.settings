@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=DESKTOP-ULOEFMA;Initial Catalog=OLIMP;Integrated Security=True;Encrypt=False;TrustServerCertificate=True</Value>
     </Setting>
+    <Setting Name="IDuserForZXC" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -33,5 +33,17 @@ namespace Olimp.Properties {
                 return ((string)(this["OLIMPConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int IDuserForZXC {
+            get {
+                return ((int)(this["IDuserForZXC"]));
+            }
+            set {
+                this["IDuserForZXC"] = value;
+            }
+        }
     }
 }

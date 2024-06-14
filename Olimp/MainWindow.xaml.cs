@@ -30,8 +30,9 @@ namespace Olimp
             //MainFrame.Navigate(new View.Prepodovatiel.Certificate());
             //MainFrame.Navigate(new View.AdminPage());
             //MainFrame.Navigate(new View.AuthPage());
-            MainFrame.Navigate(new View.Prepodovatiel.EditResults());
-
+            //MainFrame.Navigate(new View.Prepodovatiel.EditResults());
+            //MainFrame.Navigate(new View.Reg_User.UserPageEdit());
+            MainFrame.Navigate(new View.NonRegUsers.NonRegUserMainPage());
         }
 
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)

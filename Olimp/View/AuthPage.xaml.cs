@@ -51,14 +51,23 @@ namespace Olimp.View
                     {
                         foreach (var user in db.context.Users.ToList().Where(x => x.Username == name && x.Password == UserVM.HashPassword(password)))
                         {
+                            string login = usernameTextBox.Text;
+                            string pass = passwordBox.Password;
+
+                            Properties.Settings.Default.Save();
                             if (user.UserType == 0)
                             {
                                 this.NavigationService.Navigate(new AdminPage());
                             }
                             if (user.UserType == 1)
                             {
-                                MessageBox.Show("123");
                                 this.NavigationService.Navigate(new View.Prepodovatiel.PrepodMainPage());
+                            }
+                            if (user.UserType == 2)
+                            {
+                                var zzxc = db.context.Students.Where(x => x.Login == login).FirstOrDefault();
+                                Properties.Settings.Default.IDuserForZXC = (int)zzxc.StudentID;
+                                this.NavigationService.Navigate(new View.Reg_User.RegUserMainPageZV());
                             }
                         }
                     }
@@ -79,7 +88,7 @@ namespace Olimp.View
 
         private void NonReg(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new View.NonRegUsers.NonRegUserMainPage());
         }
     }
 }
