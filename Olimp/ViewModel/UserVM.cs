@@ -34,13 +34,20 @@ namespace Olimp.ViewModel
         }
         public static bool CheckAuth(string login, string password)
         {
-            string vrem = HashPassword(password);
-            int LegitCheck = bd.context.Users.Where(x => x.Username == login && x.Password== vrem).Count();
-            if (LegitCheck == 0)
+            if (login!="" && password!="")
             {
-                return false;
+                string vrem = HashPassword(password);
+                int LegitCheck = bd.context.Users.Where(x => x.Username == login && x.Password == vrem).Count();
+                if (LegitCheck == 0)
+                {
+                    throw new Exception("Неверные данные.");
+                }
+                else return true;
             }
-            else return true;
+            else 
+            {
+                throw new Exception("Не все поля заполнены"); 
+            }
         }
     }
 

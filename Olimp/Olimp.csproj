@@ -132,6 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OLIMPDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddStudent.cs" />
     <Compile Include="ViewModel\UserVM.cs" />
     <Compile Include="View\AddOlimp.xaml.cs">
       <DependentUpon>AddOlimp.xaml</DependentUpon>
