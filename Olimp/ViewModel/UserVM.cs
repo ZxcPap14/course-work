@@ -40,7 +40,7 @@ namespace Olimp.ViewModel
                 int LegitCheck = bd.context.Users.Where(x => x.Username == login && x.Password == vrem).Count();
                 if (LegitCheck == 0)
                 {
-                    throw new Exception("Неверные данные.");
+                    return true;
                 }
                 else return true;
             }

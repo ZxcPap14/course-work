@@ -32,7 +32,7 @@ namespace Olimp.View.Prepodovatiel
 
             if (Names.Text !="")
             {
-                string absolutePath = Path.GetFullPath(@"..\..\..\..\Olimp\Olimp\src\diplomas"); 
+                string absolutePath = Path.GetFullPath(@"..\..\..\..\course-work\Olimp\src\diplomas"); 
 
                 string filePaths = Path.Combine(absolutePath, Names.Text + ".xlsx");
                 MessageBox.Show(db.context.Results.Count().ToString());
