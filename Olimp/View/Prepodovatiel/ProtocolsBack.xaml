@@ -12,7 +12,7 @@
         <Grid>
             <Grid>
                 <Button Background="#E98074" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Назад" Click="Back"/>
-                <DataGrid  CanUserAddRows="False" x:Name="ProtocolsDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="300" Margin="10,10,0,0" VerticalAlignment="Center" Width="auto">
+                <DataGrid SelectionChanged="mama" CanUserAddRows="False" x:Name="ProtocolsDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="300" Margin="10,10,0,0" VerticalAlignment="Center" Width="auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ProtocolID" Binding="{Binding ProtocolID}" Width="100"/>
                         <DataGridTextColumn Header="OlympiadID" Binding="{Binding OlympiadID}" Width="100"/>
@@ -27,8 +27,8 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
+            <Button Width="100" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Опубликовать" Click="jopka13" />
 
-            
         </Grid>
     </Grid>
 </Page>

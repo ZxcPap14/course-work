@@ -8,6 +8,6 @@ namespace Olimp.Model
 {
     public class Core
     {
-        public OLIMPEntities13 context = new OLIMPEntities13();
+        public OLIMPEntities14 context = new OLIMPEntities14();
     }
 }

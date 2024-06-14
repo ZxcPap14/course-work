@@ -51,5 +51,10 @@ namespace Olimp.View.Prepodovatiel
         {
             this.NavigationService.Navigate(new View.Prepodovatiel.Certificate());
         }
+
+        private void editt(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new View.Prepodovatiel.EditResults());
+        }
     }
 }

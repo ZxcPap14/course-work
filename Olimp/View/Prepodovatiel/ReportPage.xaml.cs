@@ -107,7 +107,7 @@ namespace Olimp.View.Prepodovatiel
                     worksheet.Cells[i + 3, 2, i + 3, 4].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
                 }
                 string currentDirectory = Environment.CurrentDirectory;
-                string relativePath = @"..\..\..\..\Olimp\Olimp\src\diplomas";
+                string relativePath = @"..\..\..\..\course-work\Olimp\src\diplomas";
 
                 string absolutePath = Path.GetFullPath(relativePath);
                 string filePath = Path.Combine(absolutePath, fileName);

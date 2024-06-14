@@ -69,5 +69,15 @@ namespace Olimp.View.Prepodovatiel
         {
             this.NavigationService.GoBack();
         }
+
+        private void jopka13(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mama(object sender, SelectionChangedEventArgs e)
+        {
+               
+        }
     }
 }
