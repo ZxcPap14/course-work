@@ -69,7 +69,7 @@ namespace Olimp.View
                                 Properties.Settings.Default.IDuserForZXC = (int)zzxc.StudentID;
                                 this.NavigationService.Navigate(new View.Reg_User.RegUserMainPageZV());
                             }
-                        }
+                        }   
                     }
                     else
                     {
