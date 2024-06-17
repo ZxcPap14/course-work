@@ -26,17 +26,17 @@
         <TextBlock Text="Добавить олимпиаду" Grid.Row="0" FontWeight="Bold" FontSize="16" Margin="10"/>
 
         <TextBlock Text="Название олимпиады:" Grid.Row="1" Margin="10"/>
-        <TextBox Background="#D8C3A5" x:Name="OlympiadNameTextBox" Grid.Row="2" Margin="10"/>
+        <TextBox Background="#8B9FB4" x:Name="OlympiadNameTextBox" Grid.Row="2" Margin="10"/>
 
         <TextBlock Text="Ответственный преподаватель:" Grid.Row="3" Margin="10"/>
-        <ComboBox Background="#D8C3A5" x:Name="ResponsibleTeacherComboBox" Grid.Row="4" Margin="10" DisplayMemberPath="FullName"/>
+        <ComboBox Background="#8B9FB4" x:Name="ResponsibleTeacherComboBox" Grid.Row="4" Margin="10" DisplayMemberPath="FullName"/>
 
         <TextBlock Text="Дата начала олимпиады:" Grid.Row="5" Margin="10"/>
-        <DatePicker Background="#D8C3A5" x:Name="StartDatePicker" Grid.Row="6" Margin="10"/>
+        <DatePicker Background="#8B9FB4" x:Name="StartDatePicker" Grid.Row="6" Margin="10"/>
 
         <TextBlock Text="Дата окончания олимпиады:" Grid.Row="7" Margin="10"/>
-        <DatePicker Background="#D8C3A5" x:Name="EndDatePicker" Grid.Row="8" Margin="10"/>
+        <DatePicker Background="#8B9FB4" x:Name="EndDatePicker" Grid.Row="8" Margin="10"/>
 
-        <Button Background="#E98074" Width="100" Content="Добавить" Grid.Row="9" Margin="10" Click="AddOlympiadButton_Click"/>
+        <Button Background="#3498DB" Width="100" Content="Добавить" Grid.Row="9" Margin="10" Click="AddOlympiadButton_Click"/>
     </Grid>
 </Page>

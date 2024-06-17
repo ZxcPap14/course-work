@@ -11,7 +11,7 @@
     <Grid>
 
 
-        <ComboBox  x:Name="comboBoxNames" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  SelectionChanged="comboBoxNames_SelectionChanged" IsTextSearchEnabled="True" IsEditable="True" ScrollViewer.CanContentScroll="True"/>
+        <ComboBox Background="#3498DB" x:Name="comboBoxNames" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"  SelectionChanged="comboBoxNames_SelectionChanged" IsTextSearchEnabled="True" IsEditable="True" ScrollViewer.CanContentScroll="True"/>
 
         <Grid Margin="80">
             <Grid.RowDefinitions>
@@ -37,35 +37,35 @@
 
             <!-- ФИО -->
             <TextBlock Text="ФИО:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"/>
-            <TextBox Background="#D8C3A5" x:Name="txtFullName" Grid.Row="0" Grid.Column="1" Margin="5"/>
+            <TextBox Background="#8B9FB4" x:Name="txtFullName" Grid.Row="0" Grid.Column="1" Margin="5"/>
 
             <!-- Дата рождения -->
             <TextBlock Text="Дата рождения:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"/>
-            <DatePicker Background="#D8C3A5" x:Name="dpBirthDate" Grid.Row="1" Grid.Column="1" Margin="5"/>
+            <DatePicker Background="#8B9FB4" x:Name="dpBirthDate" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
             <!-- Почта -->
             <TextBlock Text="Почта:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"/>
-            <TextBox Background="#D8C3A5" x:Name="Email" Grid.Row="2" Grid.Column="1" Margin="5"/>
+            <TextBox Background="#8B9FB4" x:Name="Email" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
             <!-- Логин -->
             <TextBlock Text="Логин:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right"/>
-            <TextBox Background="#D8C3A5" x:Name="Username" Grid.Row="3" Grid.Column="1" Margin="5"/>
+            <TextBox Background="#8B9FB4" x:Name="Username" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
             <!-- Пароль -->
             <TextBlock Text="Пароль:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right"/>
-            <PasswordBox Background="#D8C3A5" x:Name="Password" Grid.Row="4" Grid.Column="1" Margin="5"/>
+            <PasswordBox Background="#8B9FB4" x:Name="Password" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
             <!-- Институт -->
             <TextBlock Text="Институт:" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right"/>
-            <TextBox Background="#D8C3A5" x:Name="Institution" Grid.Row="5" Grid.Column="1" Margin="5"/>
+            <TextBox Background="#8B9FB4" x:Name="Institution" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
             <!-- Образование -->
             <TextBlock Text="Образование:" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right"/>
-            <TextBox Background="#D8C3A5" x:Name="EducationLevel" Grid.Row="6" Grid.Column="1" Margin="5"/>
+            <TextBox Background="#8B9FB4" x:Name="EducationLevel" Grid.Row="6" Grid.Column="1" Margin="5"/>
 
             <!-- Курс -->
             <TextBlock Text="Курс:" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right"/>
-            <ComboBox Background="#D8C3A5" x:Name="Course" Grid.Row="7" Grid.Column="1" Margin="5">
+            <ComboBox Background="#8B9FB4" x:Name="Course" Grid.Row="7" Grid.Column="1" Margin="5">
                 <ComboBoxItem Content="1"/>
                 <ComboBoxItem Content="2"/>
                 <ComboBoxItem Content="3"/>
@@ -75,11 +75,11 @@
             </ComboBox>
             <!-- Специальность -->
             <TextBlock  Text="Специальность:" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right"/>
-            <TextBox Background="#D8C3A5" x:Name="Specialty" Grid.Row="8" Grid.Column="1" Margin="5" TextChanged="Specialty_TextChanged"/>
+            <TextBox Background="#8B9FB4" x:Name="Specialty" Grid.Row="8" Grid.Column="1" Margin="5" TextChanged="Specialty_TextChanged"/>
 
             <!-- Кнопка "Сохранить" -->
             
         </Grid>
-        <Button Background="#E98074" Content="Сохранить" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" Click="SaveButton_Click" VerticalAlignment="Bottom" Margin="5"/>
+        <Button Background="#3498DB" Content="Сохранить" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" Click="SaveButton_Click" VerticalAlignment="Bottom" Margin="5"/>
     </Grid>
 </Page>

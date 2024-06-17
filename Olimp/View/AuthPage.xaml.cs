@@ -90,5 +90,10 @@ namespace Olimp.View
         {
             this.NavigationService.Navigate(new View.NonRegUsers.NonRegUserMainPage());
         }
+
+        private void usernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

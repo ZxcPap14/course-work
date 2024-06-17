@@ -9,6 +9,6 @@
       Title="NonRegUserMainPage">
 
     <Grid>
-        <Button VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="30" Click="Olimpiada" Content="Олимпиады"/>
+        <Button Background="#3498DB" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="30" Click="Olimpiada" Content="Олимпиады"/>
     </Grid>
 </Page>

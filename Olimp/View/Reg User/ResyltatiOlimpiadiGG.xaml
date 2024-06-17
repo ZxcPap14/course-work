@@ -10,8 +10,8 @@
 
     <Grid>
         <Grid>
-            <Button Background="#E98074" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Назад" Click="Bck"/>
-            <DataGrid SelectionChanged="KaiAngel"  CanUserAddRows="False" x:Name="Olimp" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="300" Margin="10,10,0,0" VerticalAlignment="Center" Width="auto">
+            <Button Background="#3498DB" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Назад" Click="Bck"/>
+            <DataGrid Background="#8B9FB4" SelectionChanged="KaiAngel"  CanUserAddRows="False" x:Name="Olimp" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="300" Margin="10,10,0,0" VerticalAlignment="Center" Width="auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Visibility="Hidden" Header="id" Binding="{Binding OlympiadID}" Width="30"/>
                     <DataGridTextColumn Header="Олимпиада" Binding="{Binding Name}" Width="100"/>

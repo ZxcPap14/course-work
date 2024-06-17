@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="1280">
-            <DataGrid  Background="#D8C3A5"  SelectionChanged="listviewUsers1_SelectionChanged" CanUserAddRows="False" x:Name="ProtocolsDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="auto">
+            <DataGrid  Background="#8B9FB4"  SelectionChanged="listviewUsers1_SelectionChanged" CanUserAddRows="False" x:Name="ProtocolsDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ProtocolID" Binding="{Binding ProtocolID}" Width="100"/>
                     <DataGridTextColumn Header="OlympiadID" Binding="{Binding OlympiadID}" Width="100"/>
@@ -18,7 +18,7 @@
                     <DataGridTemplateColumn Header="Actions" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button  Background="#E98074" Content="Редактировать" Click="EditButton_Click" Tag="{Binding ProtocolID}"/>
+                                <Button  Background="#2ECC71" Content="Редактировать" Click="EditButton_Click" Tag="{Binding ProtocolID}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -26,11 +26,11 @@
             </DataGrid>
             <Grid Visibility="Hidden" x:Name="edit"   Width="300" Height="300"  Margin="417,10,83,140" VerticalAlignment="Top">
                 <TextBlock  Text="Статус:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <ComboBox Background="#D8C3A5" Width="240" Height="25" x:Name="StatusProtocola" Grid.Row="4" Grid.Column="1" Margin="5" HorizontalAlignment="Right">
+                <ComboBox Background="#8B9FB4" Width="240" Height="25" x:Name="StatusProtocola" Grid.Row="4" Grid.Column="1" Margin="5" HorizontalAlignment="Right">
                     <ComboBoxItem Content="Формируется"/>
                     <ComboBoxItem Content="Подготовлен"/>
                 </ComboBox>
-                <Button Width="100" Height="30" VerticalAlignment="Bottom" Background="#E98074" Content="Сохранить" Click="SaveEdit"></Button>
+                <Button Width="100" Height="30" VerticalAlignment="Bottom" Background="#3498DB" Content="Сохранить" Click="SaveEdit"></Button>
             </Grid>
         </Grid>
 

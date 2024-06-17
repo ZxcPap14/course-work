@@ -13,9 +13,9 @@
             <ColumnDefinition Width="51*"/>
             <ColumnDefinition Width="49*"/>
         </Grid.ColumnDefinitions>
-        <Button Background="#D8C3A5" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Добавить преподователя" Width="200PX" Height="30PX" Click="Button_Click" Margin="0,-35,0,0" Grid.ColumnSpan="2" ></Button>
-        <Button Background="#D8C3A5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Редактировать пользователей" Width="200PX" Height="30PX" Click="Button_Click_1" Grid.ColumnSpan="2" />
-        <Button Background="#D8C3A5" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Добавить олимпиаду" Width="200PX" Height="30PX" Click="Button_Click_2" Margin="0,-105,0,0" Grid.ColumnSpan="2" />
-        <Button Background="#D8C3A5" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Протоколы " Width="200PX" Height="30PX" Click="Button_Click_3" Margin="0,-70,0,0" Grid.ColumnSpan="2" />
+        <Button Background="#3498DB" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Добавить преподователя" Width="200PX" Height="30PX" Click="Button_Click" Margin="0,-35,0,0" Grid.ColumnSpan="2" ></Button>
+        <Button Background="#3498DB" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Редактировать пользователей" Width="200PX" Height="30PX" Click="Button_Click_1" Grid.ColumnSpan="2" />
+        <Button Background="#3498DB" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Добавить олимпиаду" Width="200PX" Height="30PX" Click="Button_Click_2" Margin="0,-105,0,0" Grid.ColumnSpan="2" />
+        <Button Background="#3498DB" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Протоколы " Width="200PX" Height="30PX" Click="Button_Click_3" Margin="0,-70,0,0" Grid.ColumnSpan="2" />
     </Grid>
 </Page>

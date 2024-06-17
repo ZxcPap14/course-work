@@ -9,8 +9,8 @@
       Title="RegUserMainPageZV">
 
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Button Width="100" Height="30" Content="Олимпиады" Click="Blablabla" Margin="0,-35,0,35"/>
-        <Button Width="100" Height="30" Content="Профиль" Click="Profile"/>
-        <Button Width="100" Height="30" Content="Записатся" Click="Zapis" Margin="0,35,0,-35"/>
+        <Button Background="#3498DB" Width="100" Height="30" Content="Олимпиады" Click="Blablabla" Margin="0,-35,0,35"/>
+        <Button Background="#3498DB" Width="100" Height="30" Content="Профиль" Click="Profile"/>
+        <Button Background="#3498DB" Width="100" Height="30" Content="Записатся" Click="Zapis" Margin="0,35,0,-35"/>
     </Grid>
 </Page>

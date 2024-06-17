@@ -8,10 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ResultOlimpPage">
 
-    <Grid Background="Wheat">
-        <Button Background="#E98074" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Редактировать" Click="jopa"></Button>
-        <Button Background="#E98074" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Назад" Click="Back"/>
-        <Grid Background="Wheat" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid >
+        <Button Background="#3498DB" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Редактировать" Click="jopa"></Button>
+        <Button Background="#3498DB" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Назад" Click="Back"/>
+        <Grid  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -25,18 +25,18 @@
             </Grid.RowDefinitions>
 
             <Label Content="Номер олимпиады:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
-            <ComboBox x:Name="Protocol_name" Grid.Column="1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" IsTextSearchEnabled="True" IsEditable="True" Margin="5" />
+            <ComboBox Background="#8B9FB4" x:Name="Protocol_name" Grid.Column="1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" IsTextSearchEnabled="True" IsEditable="True" Margin="5" />
 
             <Label Content="Имя студента:" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
-            <ComboBox x:Name="Student_name" Grid.Row="1" Grid.Column="1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" IsTextSearchEnabled="True" IsEditable="True" DisplayMemberPath="FullName" Margin="5"/>
+            <ComboBox Background="#8B9FB4" x:Name="Student_name" Grid.Row="1" Grid.Column="1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" IsTextSearchEnabled="True" IsEditable="True" DisplayMemberPath="FullName" Margin="5"/>
 
             <Label Content="Баллы:" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
-            <TextBox x:Name="score_tete" Grid.Row="2" Grid.Column="1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Background="#8B9FB4" x:Name="score_tete" Grid.Row="2" Grid.Column="1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5"/>
 
             <Label Content="Результат:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
-            <TextBox x:Name="resultt" Grid.Row="3" Grid.Column="1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Background="#8B9FB4" x:Name="resultt" Grid.Row="3" Grid.Column="1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5"/>
 
-            <Button Background="#E98074" Grid.Row="4" Grid.Column="1" Width="200" Height="30" Margin="5" Click="SaveNewResult" Content="Сохранить" HorizontalAlignment="Left"/>
+            <Button Background="#3498DB" Grid.Row="4" Grid.Column="1" Width="200" Height="30" Margin="5" Click="SaveNewResult" Content="Сохранить" HorizontalAlignment="Left"/>
         </Grid>
     </Grid>
 </Page>

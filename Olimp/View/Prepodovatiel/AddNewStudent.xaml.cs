@@ -36,7 +36,7 @@ namespace Olimp.View.Prepodovatiel
         private void AddTeacherButton_Click(object sender, RoutedEventArgs e)
         {
 
-            var dbContext = new OLIMPEntities14();
+            //var dbContext = new OLIMPEntities14();
             var existingUser = db.context.Users.FirstOrDefault(u => u.Username == LoginTextBox.Text);
             var existingStudent = db.context.Students.FirstOrDefault(t => t.Email == EmailTextBox.Text);
             
@@ -53,7 +53,7 @@ namespace Olimp.View.Prepodovatiel
                         };
                         db.context.Users.Add(newPolz);
                         db.context.SaveChanges();
-                        int userRole = dbContext.Users
+                        int userRole = db.context.Users
                         .Where(u => u.Username == LoginTextBox.Text)
                         .Select(u => u.UserType)
                         .FirstOrDefault();

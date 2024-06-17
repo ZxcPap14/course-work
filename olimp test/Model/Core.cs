@@ -9,6 +9,6 @@ namespace olimp_test.Model
 {
     internal class Core
     {
-        public OLIMPEntities14 context = new OLIMPEntities14();
+        public OLIMPEntities15 context = new OLIMPEntities15();
     }
 }

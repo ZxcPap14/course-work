@@ -11,8 +11,8 @@
     <Grid>
         <Grid>
             <Grid>
-                <Button Background="#E98074" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Назад" Click="Back"/>
-                <DataGrid SelectionChanged="mama" CanUserAddRows="False" x:Name="ProtocolsDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="300" Margin="10,10,0,0" VerticalAlignment="Center" Width="auto">
+                <Button Background="#3498DB" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Назад" Click="Back"/>
+                <DataGrid Background="#8B9FB4" SelectionChanged="mama" CanUserAddRows="False" x:Name="ProtocolsDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="300" Margin="10,10,0,0" VerticalAlignment="Center" Width="auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ProtocolID" Binding="{Binding ProtocolID}" Width="100"/>
                         <DataGridTextColumn Header="OlympiadID" Binding="{Binding OlympiadID}" Width="100"/>
@@ -20,7 +20,7 @@
                         <DataGridTemplateColumn Header="Actions" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Отозвать" Background="#E98074" Click="OtozvatClick" Tag="{Binding ProtocolID}"/>
+                                    <Button Content="Отозвать" Background="#2ECC71" Click="OtozvatClick" Tag="{Binding ProtocolID}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

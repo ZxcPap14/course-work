@@ -9,12 +9,12 @@
       Title="PrepodMainPage">
 
     <Grid>
-        <Button Width="120" Height="30" Background="#E98074" Content="Добавить ученика" Click="addStudnetov"/>
-        <Button Width="120" Height="30" Background="#E98074" Content="Result" Click="Result" Margin="340,175,340,245"/>
-        <Button Width="120" Height="30" Background="#E98074" Content="Отчет" Click="Octhet" Margin="340,245,340,175"/>
-        <Button Width="120" Height="30" Background="#E98074" Content="Отозвать протокол" Click="RedackProtocol" Margin="340,280,340,140"/>
-        <Button Width="120" Height="30" Background="#E98074" Content="Добавить сертификат" Click="Sertifikat" Margin="340,315,340,105"/>
-        <Button Width="120" Height="30" Background="#E98074" Content="edit" Click="editt" Margin="340,350,340,70"/>
+        <Button Width="120" Height="30" Background="#3498DB" Content="Добавить ученика" Click="addStudnetov"/>
+        <Button Width="120" Height="30" Background="#3498DB" Content="Result" Click="Result" Margin="340,175,340,245"/>
+        <Button Width="120" Height="30" Background="#3498DB" Content="Отчет" Click="Octhet" Margin="340,245,340,175"/>
+        <Button Width="120" Height="30" Background="#3498DB" Content="Отозвать протокол" Click="RedackProtocol" Margin="340,280,340,140"/>
+        <Button Width="120" Height="30" Background="#3498DB" Content="Добавить сертификат" Click="Sertifikat" Margin="340,315,340,105"/>
+        <Button Width="120" Height="30" Background="#3498DB" Content="edit" Click="editt" Margin="340,350,340,70"/>
 
 
     </Grid>

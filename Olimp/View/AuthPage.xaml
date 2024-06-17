@@ -10,12 +10,12 @@
 
     <Grid>
         <StackPanel Margin="50" VerticalAlignment="Center" HorizontalAlignment="Center"> 
-            <TextBlock Text="Username:"  Width="500"/>
-            <TextBox Background="#D8C3A5" x:Name="usernameTextBox" Width="500" Height="30" Margin="0,5,0,10"/>
-            <TextBlock  Text="Password:" Width="500"/>
-            <PasswordBox Background="#D8C3A5" x:Name="passwordBox" Width="500" Height="30" Margin="0,5,0,10"/>
-            <Button Background="#E98074" Width="100" Content="Login" Click="Login_Click" HorizontalAlignment="Center"/>
+            <TextBlock  Text="Username:"  Width="500"/>
+            <TextBox Background="#8B9FB4"   x:Name="usernameTextBox" Width="500" Height="30" Margin="0,5,0,10" TextChanged="usernameTextBox_TextChanged"/>
+            <TextBlock   Text="Password:" Width="500"/>
+            <PasswordBox  Background="#8B9FB4" x:Name="passwordBox" Width="500" Height="30" Margin="0,5,0,10"/>
+            <Button  Background="#3498DB" Width="100" Content="Login" Click="Login_Click" HorizontalAlignment="Center"/>
         </StackPanel>
-        <Button Background="#E98074" Width="150" Height="30" VerticalAlignment="Bottom" Content="Войти без регистрации" Opacity="1" Click="NonReg"></Button>
+        <Button Background="#3498DB"  Width="150" Height="30" VerticalAlignment="Bottom" Content="Войти без регистрации" Opacity="1" Click="NonReg"></Button>
     </Grid>
 </Page>
