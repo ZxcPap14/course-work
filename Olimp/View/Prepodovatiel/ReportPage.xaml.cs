@@ -35,33 +35,44 @@ namespace Olimp.View.Prepodovatiel
                 string absolutePath = Path.GetFullPath(@"..\..\..\..\course-work\Olimp\src\diplomas"); 
 
                 string filePaths = Path.Combine(absolutePath, Names.Text + ".xlsx");
-                MessageBox.Show(db.context.Results.Count().ToString());
+               // MessageBox.Show(db.context.Results.Count().ToString());
                 if (!File.Exists(filePaths))
                 {
                     var participants = new List<Participant>();
                     int i = 1;
+                    int j = 1;
                     do  
                     {
 
 
-                        var zxc = db.context.Results.FirstOrDefault(u => u.id == i);
+                        var zxc = db.context.Results.FirstOrDefault(u => u.id == j);
 
-                        int studentId = int.Parse(zxc.student_id.ToString());
-                        // MessageBox.Show(studentId.ToString());
-                        participants.Add(new Participant
+                        try
                         {
-                            Name = db.context.Students
-                            .Where(u => u.StudentID == studentId)
-                            .Select(u => u.FullName)
-                            .FirstOrDefault(),
-                            Score = int.Parse(zxc.score.ToString()),
-                            Result = zxc.result
-                        });
-                        i++;
+                            if (zxc.student_id != null)
+                            {
+                                int studentId = int.Parse(zxc.student_id.ToString());
+                                // MessageBox.Show(studentId.ToString());
+                                participants.Add(new Participant
+                                {
+                                    Name = db.context.Students
+                                    .Where(u => u.StudentID == studentId)
+                                    .Select(u => u.FullName)
+                                    .FirstOrDefault(),
+                                    Score = int.Parse(zxc.score.ToString()),
+                                    Result = zxc.result
+                                });
+                                i++;
+                                j++;
+                            }
+                        }
+                        catch {
+                            j++;
+                        }
                     }
                     while (i-1 < db.context.Results.Count());
                     string filenamess =Names.Text+".xlsx";
-                    MessageBox.Show(filenamess);
+                    //MessageBox.Show(filenamess);
                     CreateExcelDocument(filenamess, participants);
                     MessageBox.Show("Успех");
                 }

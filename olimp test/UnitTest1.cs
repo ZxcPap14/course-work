@@ -53,6 +53,7 @@ namespace olimp_test
         {
             string login = "admin";
             string password = " admin";
+            Olimp.ViewModel.AddStudent obj = new Olimp.ViewModel.AddStudent();
             Assert.ThrowsException<Exception>(() => UserVM.CheckAuth(login, password));
         }
         [TestMethod]

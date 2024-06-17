@@ -42,7 +42,9 @@ namespace Olimp.ViewModel
                 {
                     return true;
                 }
+                
                 else return true;
+                throw new Exception(" Абоба");
             }
             else 
             {
